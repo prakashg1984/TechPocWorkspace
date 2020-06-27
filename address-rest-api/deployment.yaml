@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: addressapi
+spec:
+  template:
+    metadata:
+      labels:
+        app: addressapi
+    spec:
+      containers:
+      - name: addressapi
+        image: prakashg84/test:address-rest-api
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,15 @@
+{
+	"customerOrderNumber": "O1",
+	"Addresses": {
+		"Zip": "75081",
+		"Country": "US",
+		"City": "Richardson"
+	},
+	"Accounts": {
+		"Account": [{
+				"AccountSubCategory": "EXISTING",
+				"AccountCategory": "MOBILITY_ACCOUNT",
+				"BillingAccountNumber" : "12345"
+		}]
+	}
+}

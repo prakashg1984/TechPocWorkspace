@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: springboot-elasticsearch-redis
+spec:
+  template:
+    metadata:
+      labels:
+        app: springboot-elasticsearch-redis
+    spec:
+      containers:
+      - name: springboot-elasticsearch-redis
+        image: ${docker.registry}:springboot-elasticsearch-redis
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

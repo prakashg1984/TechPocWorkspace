@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	 http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+
+		<route customId="true" id="route1">
+
+			<!-- Read files from input directory -->
+			<from uri="file://src/data/input?noop=true" />
+			<log loggingLevel="INFO" message="Processing Started" />
+			
+		    <log loggingLevel="INFO" message="Processing Started for file ${header.CamelFileName}" />
+		
+			<!-- Transform content to UpperCase -->
+			<process ref="myFileProcessor" />
+
+			<!-- Write converted file content -->
+			<to uri="file://src/data/outputUpperCase" />
+
+			<!-- Transform content to LowerCase -->
+			<transform>
+				<simple>${body.toLowerCase()}</simple>
+			</transform>
+
+			<!-- Write converted file content -->
+			<to uri="file://src/data/outputLowerCase" />
+
+			<!-- Display process completion message on console -->
+			<transform>
+				<simple>.......... File content conversion completed ..........</simple>
+			</transform>
+			<to uri="stream:out" />
+			
+			<log loggingLevel="INFO" message="Processing Completed for file ${header.CamelFileName}" />
+			
+
+		</route>
+
+	</camelContext>
+
+	<bean id="myFileProcessor" class="com.pg.camel.FileProcessor" />
+</beans>

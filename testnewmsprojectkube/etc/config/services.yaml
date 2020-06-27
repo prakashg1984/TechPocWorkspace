@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: testocenewprojectservice
+  labels:
+    app: testocenewprojectservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: testocenewproject   
+  type: NodePort

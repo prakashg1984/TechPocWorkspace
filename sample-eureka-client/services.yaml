@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: sample-eureka-clientservice
+  labels:
+    app: sample-eureka-clientservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: sample-eureka-client   
+  type: NodePort

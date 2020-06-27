@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: springboot-mongoservice
+  labels:
+    app: springboot-mongoservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: springboot-mongo   
+  type: NodePort

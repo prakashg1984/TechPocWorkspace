@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: testnewmsprojectkube
+spec:
+  template:
+    metadata:
+      labels:
+        app: testnewmsprojectkube
+    spec:
+      containers:
+      - name: testnewmsprojectkube
+        image: ${docker.registry}:testnewmsprojectkube
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

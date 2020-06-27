@@ -1,0 +1,77 @@
+{
+	"order": {
+		"paymentTenders": [{
+			"sequence": 1,
+			"paymentMethod": {
+				"btm": {
+					"totalAmount": 14.95,
+					"subscriberNumber": "3212728368",
+					"equipmentType": "G"
+				}
+			},
+			"id": "PAYMENT_OPTION_01"
+		}],
+		"promotions": [{
+			"unitOfMeasurement": "FLATOFF",
+			"complexDiscountIndicator": false,
+			"sequence": 1,
+			"promotionName": "Free Apple iPhone 8 (64GB Red/Gold/Silver/Gray) with $19.99 or higher iPhone Data Plan and $12.99 or higher Voice Plan",
+			"promotionType": "INSTANTCREDIT",
+			"displayLevel": "ITEM",
+			"promotionCode": "promo11803500001",
+			"fixedAmount": 0,
+			"id": "PROMOTION_01",
+			"promotionCycle": "ONETIME",
+			"promotionId": "promo11803500001"
+		},
+		{
+			"unitOfMeasurement": "FLATOFF",
+			"complexDiscountIndicator": false,
+			"sequence": 3,
+			"promotionName": "$17.60 off $45 Business Pooled 2GB Add-on for Blackberry/Smartphone/iPhone (excludes Business Nation Unlimited/Custom)",
+			"promotionType": "MONTHLYCREDIT",
+			"displayLevel": "ITEM",
+			"promotionCode": "promo11543200025",
+			"fixedAmount": 17.6,
+			"id": "PROMOTION_02",
+			"promotionCycle": "MONTHLY",
+			"promotionId": "promo11543200025"
+		},
+		{
+			"unitOfMeasurement": "PERCENTAGE",
+			"complexDiscountIndicator": false,
+			"sequence": 5,
+			"promotionName": "27% Service Discount",
+			"promotionType": "MONTHLYCREDIT",
+			"displayLevel": "ITEM",
+			"promotionCode": "promo20800177",
+			"id": "PROMOTION_03",
+			"promotionCycle": "MONTHLY",
+			"percent": 27,
+			"promotionId": "promo20800177"
+		}],
+		"contactDetail": {
+			"personalDetail": {
+				"firstName": "Stanley",
+				"lastName": "Adams",
+				"emailAddress": "sadams11@harris.com",
+				"primaryContactPhones": [{
+					"phoneNumber": "3214324344",
+					"contactPhoneType": "HOME_PHONE"
+				}],
+				"id": "NAME_01"
+			},
+			"additionalEmailRecipients": "mgould@harris.com",
+			"primaryEmailAddress": "sadams11@harris.com"
+		},
+		"requestId": "10-153379263423044",
+		"salesAgent": {
+			"agentCode": "6F728",
+			"salesCode": "6F728",
+			"location": "Z0066"
+		},
+		"orderSource": {
+			"channel": "DE-MOBILITY"
+		}
+		}
+}

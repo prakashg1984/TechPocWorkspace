@@ -1,0 +1,45 @@
+node {
+    docker.withRegistry('https://hub.docker.com/', 'docker-hub-credentials') {
+    	def mvnHome
+    	
+    	stage('checkout'){
+        
+        mvnHome = tool 'M3'
+        git url: 'https://github.com/prakashg1984/workplace.git'
+    
+        sh "git rev-parse HEAD > .git/commit-id"
+        def commit_id = readFile('.git/commit-id').trim()
+        println commit_id
+        }
+    
+    dir('sample-eureka-client'){
+        stage('build'){
+	        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+	        sh 'docker login --username prakashg84 --password kashprag0712'
+	        sh ("docker build -t sample-eureka-client .")
+	        sh ("docker tag  sample-eureka-client prakashg84/test:sample-eureka-client")
+	        sh ("docker push prakashg84/test:sample-eureka-client")
+    	}
+    	
+    	stage('create docker image'){
+		        sh 'docker login --username prakashg84 --password kashprag0712'
+		        sh ("docker build -t address-rest-api .")
+		        sh ("docker tag  address-rest-api prakashg84/test:address-rest-api")
+    	}
+    	
+    	stage('push docker image'){
+			sh ("docker push prakashg84/test:sample-eureka-client")
+    	}
+    	
+    	stage('create deployment'){
+    	    sh 'kubectl delete deployments sample-eureka-clientapi || true' 
+	    sh 'kubectl create -f deployment.yaml --validate=false'
+    	}
+    	
+    	stage('create service'){
+	    sh 'kubectl delete services sample-eureka-clientapiservice || true'
+	    sh 'kubectl create -f services.yaml --validate=false'
+    	}
+    }
+    }
+}

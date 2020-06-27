@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: hellotestdockerservice
+  labels:
+    app: hellotestdockerservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: hellotestdocker   
+  type: NodePort

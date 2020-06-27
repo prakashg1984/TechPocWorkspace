@@ -1,0 +1,38 @@
+spring.application.name: simpleApplication
+spring:
+  datasource:
+    url: jdbc:h2:mem:example-simple;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  activemq:
+    brokerUrl: tcp://localhost:61616
+    user: admin
+    password: admin
+camunda:
+  bpm:
+    application:
+      delete-upon-undeploy: false
+      scan-for-process-definitions: false
+      deploy-changed-only: true
+      resume-previous-versions: true
+      resume-previous-by: a value
+    job-execution:
+      enabled: true
+    metrics:
+      enabled: true
+      db-reporter-activate: true
+test:
+  event:
+    topic: ORDER_PROCESS_TOPIC
+  fallout:
+    topic: FALLOUT_RESUME_EVENT_TOPIC
+
+kafka:
+  consumer:
+    bootstrap:
+      servers: localhost:9092
+  producer:
+    bootstrap:
+      servers: localhost:9092
+      
+order:
+  event:
+    topic: ORDER_EVENT_TOPIC

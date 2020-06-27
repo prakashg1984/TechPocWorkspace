@@ -1,0 +1,27 @@
+<div>
+	<nav class='navbar navbar-default navbar-fixed-top'>
+		<div class='container-fluid'>
+			<ul class="social-network social-circle iconpos">
+				<li><a href="#" class="icoFacebook" title="Facebook"><i
+						class="fa fa-facebook fa-1x"></i></a></li>
+				<li class="divider-vertical"></li>
+				<li><a href="#" class="icoTwitter" title="Twitter"><i
+						class="fa fa-twitter fa-1x"></i></a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<div class="panel-heading text-right" style="display:none;padding:0px;position:relative;top:15px;" id="welcome">Welcome ABC{{userName | titlecase}}</div></li>
+				<li class="divider-vertical"></li>
+				<li>
+					<div class="btn-nav" style="padding-right:15px">
+						<a id="login" class="btn btn-primary btn-small navbar-btn" (click)="login()">{{loginTitle}}</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<router-outlet></router-outlet>
+
+</div>

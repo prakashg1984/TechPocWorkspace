@@ -1,0 +1,19 @@
+package droolsexample
+
+import com.test.sampledrools.RuleResponse;
+import com.test.sampledrools.Util;
+import java.util.Map;
+
+global com.test.sampledrools.Util myUtil;
+
+dialect "java"
+rule "Rule3"
+when
+	$ruleResponse:RuleResponse() 
+	$orderMap : Map()
+	eval(myUtil.checkFieldPresent($orderMap,"response","salesAgent"))
+	eval(myUtil.checkFieldPresent($orderMap,"response","paymentMethod"))
+	$newValue : Map() from myUtil.findData($orderMap,"response","notfoundvalue","order.notfoundvalue","false")
+then
+	$ruleResponse.addRuleResponse($newValue);
+end
