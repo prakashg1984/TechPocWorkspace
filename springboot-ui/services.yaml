@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: springboot-uiservice
+  labels:
+    app: springboot-uiservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: springboot-ui   
+  type: NodePort

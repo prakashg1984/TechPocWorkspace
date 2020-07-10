@@ -1,0 +1,5 @@
+com\test\demo\SamplespringbootApplication.class
+com\test\demo\bo\User.class
+com\test\demo\controller\LoginController.class
+com\test\demo\service\LoginService.class
+com\test\demo\MvcConfig.class
