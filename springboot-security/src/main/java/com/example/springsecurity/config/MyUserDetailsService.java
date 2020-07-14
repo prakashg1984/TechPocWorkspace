@@ -1,4 +1,4 @@
-package com.example.securingweb;
+package com.example.springsecurity.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +16,13 @@ public class MyUserDetailsService implements UserDetailsService {
     public MyUserDetailsService() {
         //in a real application, instead of using local data,
         // we will find user details by some other means e.g. from an external system
-        users.add(new UserObject("erin", "{noop}123", "ADMIN"));
-        users.add(new UserObject("mike", "{noop}234", "ADMIN"));
-        users.add(new UserObject("pgps", "{noop}234", "USER"));
+        users.add(new UserObject("admin", "{noop}admin123", "ADMIN"));
+        users.add(new UserObject("manager", "{noop}manager123", "ADMIN"));
+        users.add(new UserObject("user", "{noop}user234", "USER"));
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    	System.out.println("loadUserByUsername "+username);
         Optional<UserObject> user = users.stream()
                                          .filter(u -> u.name.equals(username))
                                          .findAny();
@@ -34,11 +33,9 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails toUserDetails(UserObject userObject) {
-    	System.out.println("loadUserByUsername "+userObject.name);
-
-        return User.withUsername(userObject.name)
-                   .password(userObject.password)
-                   .roles(userObject.role).build();
+	        return User.withUsername(userObject.name)
+               .password(userObject.password)
+               .roles(userObject.role).build();
     }
 
     private static class UserObject {

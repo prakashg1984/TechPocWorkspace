@@ -5,9 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Logged IN</h1>
-    <p th:text="'User Name: ' + ${user.userName}" />
-    <a href="/login">Back to Home</a>
+	<h1>Result</h1>
+    <p th:text="'id: ' + ${greeting.id}" />
+    <p th:text="'content: ' + ${greeting.content}" />
+    <a href="/hello">Submit another message</a>
+    <a href="/home">Back to Home</a>
     
 </body>
 </html>
