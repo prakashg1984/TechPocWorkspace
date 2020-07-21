@@ -17,7 +17,7 @@ node {
 	        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
 	        sh 'docker login --username <userName> --password <password>'
 	        sh ("docker build -t springboot-ui .")
-	        sh ("docker tag  springboot-ui prakashg84/test:springboot-ui")
+	        sh ("docker tag  springboot-ui test:springboot-ui")
 	        sh ("docker push <repo>/test:springboot-ui")
     	}
     	
@@ -28,7 +28,7 @@ node {
     	}
     	
     	stage('push docker image'){
-			sh ("docker push prakashg84/test:springboot-ui")
+			sh ("docker push test:springboot-ui")
     	}
     	
     	stage('create deployment'){

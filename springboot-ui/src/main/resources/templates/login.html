@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Springboot Web Example </title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     </head>
     <body>
         <div th:if="${param.error}">
@@ -11,10 +12,30 @@
         <div th:if="${message}">
            <span th:text=" ${message}"></span>
    		 </div>
-        <form action="#" th:action="@{/login}" method="post" th:object="${user}">
-            <div><label> User Name : <input type="text" th:field="*{userName}"/> </label></div>
-            <div><label> Password: <input type="password" th:field="*{password}"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
+        <form th:action="@{/login}" method="post" th:object="${user}">
+        	<table>
+        		<tr>
+        			<td>User Name :</td>
+        			<td><input type="text" th:field="*{userName}"/></td>
+        			<td th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">UserName Error</td>
+        		</tr>
+        		
+        		<tr>
+        			<td>Password :</td>
+        			<td><input type="password" th:field="*{password}"/></td>
+        			<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+        		</tr>
+        		
+        		<tr>
+        			<td align="center">
+        			<div><input type="submit" value="Sign In"/></div>
+        			</td>
+        		</tr>
+        	</table>
+            
+            <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;">
+      		</div>
+            
         </form>
     </body>
 </html>
