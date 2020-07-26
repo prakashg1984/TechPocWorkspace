@@ -15,14 +15,14 @@ node {
     dir('${artifactId}'){
         stage('build'){
 	        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
-	        sh 'docker login --username prakashg84 --password kashprag0712'
+	        sh 'docker login --username --password '
 	        sh ("docker build -t ${artifactId} .")
 	        sh ("docker tag  ${artifactId} prakashg84/test:${artifactId}")
 	        sh ("docker push prakashg84/test:${artifactId}")
     	}
     	
     	stage('create docker image'){
-		        sh 'docker login --username prakashg84 --password kashprag0712'
+		        sh 'docker login --username --password '
 		        sh ("docker build -t address-rest-api .")
 		        sh ("docker tag  address-rest-api prakashg84/test:address-rest-api")
     	}
