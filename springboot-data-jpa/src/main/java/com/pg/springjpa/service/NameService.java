@@ -1,8 +1,9 @@
 package com.pg.springjpa.service;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,11 @@ import com.pg.springjpa.repo.NameRepository;
 
 @Component
 public class NameService {
-    @Autowired NameRepository repository;
+	
+    private static final Logger logger = LoggerFactory.getLogger(NameService.class);
+
+    @Autowired 
+    NameRepository repository;
 
     public void add(Name dto) {
         repository.save(dto);
@@ -26,14 +31,13 @@ public class NameService {
     }
 
     public Name getNameById(long id) {
+    	logger.info("Input for getNameById {} ",id);
     	Name optionalName = repository.findOne(id);
         return optionalName;
     }
 
-   /* private Dog toEntity(DogDto dto) {
-        Dog entity = new Dog();
-        entity.setName(dto.getName());
-        entity.setAge(dto.getAge());
-        return entity;
-    }*/
+    public List<Name> getNameByName(String name) {
+    	logger.info("Input for getNameByName {} ",name);
+        return (List<Name>) repository.findByName(name);
+    }
 }
