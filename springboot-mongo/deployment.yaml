@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: springboot-mongo
+spec:
+  template:
+    metadata:
+      labels:
+        app: springboot-mongo
+    spec:
+      containers:
+      - name: springboot-mongo
+        image: ${docker.registry}:springboot-mongo
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

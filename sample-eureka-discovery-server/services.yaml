@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: sample-eureka-discovery-serverservice
+  labels:
+    app: sample-eureka-discovery-serverservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: sample-eureka-discovery-server   
+  type: NodePort

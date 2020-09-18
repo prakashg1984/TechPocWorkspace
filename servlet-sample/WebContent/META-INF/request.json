@@ -1,0 +1,348 @@
+
+{
+  "next": {
+    "since": "2019-04-24T11:57:50.658719Z",
+    "scroll_id": "036dcdf3-ca9b-4354-9aa2-5f2cf1261dc5",
+    "scroll_size": 10,
+    "href": "https://api.fifoundry.net/v1/progress/user_assignments?scroll_id=036dcdf3-ca9b-4354-9aa2-5f2cf1261dc5&scroll_size=10&since=2019-04-24T11%3A57%3A50.658719Z"
+  },
+  "data": [
+    {
+      "id": 67786,
+      "user": {
+        "id": "05d86b3b-0dd2-4649-902a-3d917487aa42",
+        "email": "meleitch@gmail.com",
+        "active": true,
+        "sso_id": "",
+        "location": {
+          "name": "Boston Campus"
+        },
+        "groupings": [],
+        "last_name": "Test",
+        "first_name": "Maggie ",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "1dd3b058-2f9a-4508-a5a5-4f47f0ef0777",
+          "name": "GDPR Training",
+          "due_on": "2019-01-10",
+          "content_status": "completed",
+          "last_progress_at": "2019-01-10T17:34:14.614Z",
+          "percent_completed": 100
+        }
+      ],
+      "assignment": {
+        "id": 3948,
+        "name": "C&C Assignment Spring 2019"
+      },
+      "updated_at": "2019-04-24T11:57:48.493890+00:00",
+      "assignment_status": "selected"
+    },
+    {
+      "id": 67789,
+      "user": {
+        "id": "a663adea-2fc4-49a8-96be-f27267c29b8c",
+        "email": "john@gmail.com",
+        "active": true,
+        "sso_id": "",
+        "location": {
+          "name": "Boston Campus"
+        },
+        "groupings": [],
+        "last_name": "Test Rodriguez",
+        "first_name": "John",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "21d77800-5571-4a1b-b7a0-6391bd27061e",
+          "name": "Injury & Illness Prevention",
+          "due_on": "2019-01-10",
+          "content_status": "in_progress",
+          "last_progress_at": "2019-01-10T00:24:07.363Z",
+          "percent_completed": 88
+        }
+      ],
+      "assignment": {
+        "id": 3951,
+        "name": "Assignment 34"
+      },
+      "updated_at": "2019-04-24T11:57:48.671766+00:00",
+      "assignment_status": "in_progress"
+    },
+    {
+      "id": 68748,
+      "user": {
+        "id": "7f76bc72-38a7-4aa6-be11-b59c5d3b7586",
+        "email": "nick@everfi.com",
+        "active": true,
+        "sso_id": "",
+        "location": {
+          "name": "San Francisco Campus"
+        },
+        "groupings": [],
+        "last_name": "Quick",
+        "first_name": "Nick",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "74a85ce6-7632-4ac2-a07b-8a886abd85fa",
+          "name": "PCI DSS Training",
+          "due_on": "2019-03-14",
+          "content_status": "not_started",
+          "last_progress_at": "2019-01-14T17:58:07.499Z",
+          "percent_completed": 0
+        }
+      ],
+      "assignment": {
+        "id": 4126,
+        "name": "PCI DSS"
+      },
+      "updated_at": "2019-04-24T11:57:48.972308+00:00",
+      "assignment_status": "assigned"
+    },
+    {
+      "id": 67791,
+      "user": {
+        "id": "50ab42d9-aa61-4db6-84e3-b896dd6e2ce5",
+        "email": "liz@gmail.com",
+        "active": false,
+        "sso_id": "",
+        "location": {
+          "name": "Boston Campus"
+        },
+        "groupings": [],
+        "last_name": "Test",
+        "first_name": "Elizabeth",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "30c06109-84e6-435a-addb-5d8f939ad100",
+          "name": "Social Media",
+          "due_on": "2019-01-10",
+          "content_status": "completed",
+          "last_progress_at": "2019-01-14T14:27:59.712Z",
+          "percent_completed": 100
+        }
+      ],
+      "assignment": {
+        "id": 3953,
+        "name": "QA5"
+      },
+      "updated_at": "2019-04-24T11:57:49.140937+00:00",
+      "assignment_status": "closed"
+    },
+    {
+      "id": 67790,
+      "user": {
+        "id": "a663adea-2fc4-49a8-96be-f27267c29b8c",
+        "email": "john@gmail.com",
+        "active": true,
+        "sso_id": "",
+        "location": {
+          "name": "Boston Campus"
+        },
+        "groupings": [],
+        "last_name": "Test Rodriguez",
+        "first_name": "John",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "60c4dbe8-3e8c-4cb3-8397-1088acb29d6c",
+          "name": "Managing Bias",
+          "due_on": "2019-01-10",
+          "content_status": "completed",
+          "last_progress_at": "2019-01-10T00:23:10.622Z",
+          "percent_completed": 100
+        }
+      ],
+      "assignment": {
+        "id": 3952,
+        "name": "QA5"
+      },
+      "updated_at": "2019-04-24T11:57:49.163250+00:00",
+      "assignment_status": "closed"
+    },
+    {
+      "id": 43533,
+      "user": {
+        "id": "4cd55f0a-6f64-47a5-8b3b-ac9c2091845e",
+        "email": "somone@blah.com",
+        "active": true,
+        "sso_id": "",
+        "location": {
+          "name": "Boston Campus"
+        },
+        "groupings": [
+          {
+            "name": "Departments",
+            "value": "Behavioral Science"
+          },
+          {
+            "name": "Faculty or Staff",
+            "value": "Full-time Faculty"
+          }
+        ],
+        "last_name": "Jones",
+        "first_name": "Stan",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "83605186-6c56-4285-9bab-dc6d1ec9bb75",
+          "name": "Bridges: Building a Supportive Community",
+          "due_on": "2018-12-27",
+          "content_status": "not_started",
+          "last_progress_at": "2018-12-21T15:35:16.768Z",
+          "percent_completed": 0
+        }
+      ],
+      "assignment": {
+        "id": 1940,
+        "name": "Bridges - Boston Campus"
+      },
+      "updated_at": "2019-04-24T11:57:50.603652+00:00",
+      "assignment_status": "assigned"
+    },
+    {
+      "id": 43692,
+      "user": {
+        "id": "586dbb27-da3b-466f-85de-8f1ba5e3c5b1",
+        "email": "tvowelsl@apple.com",
+        "active": true,
+        "sso_id": "",
+        "location": {
+          "name": "San Francisco Campus"
+        },
+        "groupings": [
+          {
+            "name": "Departments",
+            "value": "Behavioral Science"
+          },
+          {
+            "name": "Faculty or Staff",
+            "value": "Full-time Faculty"
+          }
+        ],
+        "last_name": "Vowels",
+        "first_name": "Tanhya",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "556ce1b9-0576-4911-a3a8-b32ce84af7d0",
+          "name": "Bridges | Taking Action",
+          "due_on": "2018-12-27",
+          "content_status": "not_started",
+          "last_progress_at": "2018-12-21T15:35:44.354Z",
+          "percent_completed": 0
+        }
+      ],
+      "assignment": {
+        "id": 1942,
+        "name": "Bridges: Taking Action - San Francisco Campus"
+      },
+      "updated_at": "2019-04-24T11:57:50.524402+00:00",
+      "assignment_status": "assigned"
+    },
+    {
+      "id": 43607,
+      "user": {
+        "id": "9ec1be6f-1732-4fe4-8f73-7e7a608b2751",
+        "email": "jj@msn.com",
+        "active": true,
+        "sso_id": "",
+        "location": {
+          "name": "San Francisco Campus"
+        },
+        "groupings": [
+          {
+            "name": "Departments",
+            "value": "History, Philosophy & Political Science"
+          },
+          {
+            "name": "Faculty or Staff",
+            "value": "Part-time Faculty"
+          }
+        ],
+        "last_name": "Test",
+        "first_name": "Dyanne",
+        "student_id": "",
+        "employee_id": ""
+      },
+      "progress": [
+        {
+          "id": "baf03393-b730-419f-bc92-6661a5d5257c",
+          "name": "Bridges | Taking Action",
+          "due_on": "2018-12-27",
+          "content_status": "not_started",
+          "last_progress_at": "2018-12-21T15:35:31.365Z",
+          "percent_completed": 0
+        }
+      ],
+      "assignment": {
+        "id": 1942,
+        "name": "Bridges: Taking Action - San Francisco Campus"
+      },
+      "updated_at": "2019-04-24T11:57:50.648653+00:00",
+      "assignment_status": "assigned"
+    },
+    {
+      "id": 1880867,
+      "user": {
+        "id": "1a518a5e-b966-42e7-87ec-389bad3c89b9",
+        "email": "somebody@everfi.com",
+        "active": true,
+        "sso_id": "somebody@everfi.com",
+        "location": {
+          "name": "California"
+        },
+        "groupings": [
+          {
+            "name": "grouping 1",
+            "value": "group 1b"
+          },
+          {
+            "name": "grouping 2",
+            "value": "group 2e"
+          }
+        ],
+        "last_name": "Corleone",
+        "first_name": "Vito",
+        "student_id": "0000054186",
+        "employee_id": "16516516"
+      },
+      "progress": [
+        {
+          "id": "0d0aec77-49b3-477d-a4b5-68435db3526d",
+          "name": "Checkpoint: Data Security & Privacy",
+          "due_on": "2019-08-22",
+          "started_at": "2019-07-23T16:26:30.000Z",
+          "completed_at": "2019-07-23T16:26:55.000Z",
+          "content_status": "completed",
+          "last_progress_at": "2019-07-23T16:40:36.739Z",
+          "percent_completed": 100
+        }
+      ],
+      "assignment": {
+        "id": 22190,
+        "name": "Checkpoint Assignment 3"
+      },
+      "updated_at": "2019-07-23T16:40:37.705318+00:00",
+      "assigned_at": "2019-07-23T15:50:47.754Z",
+      "assignment_status": "assigned"
+    }
+  ]
+}
+

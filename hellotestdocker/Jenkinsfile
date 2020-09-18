@@ -1,0 +1,28 @@
+node {
+    docker.withRegistry('https://hub.docker.com/', 'docker-hub-credentials') {
+        def mvnHome
+        mvnHome = tool 'M3'
+        git url: 'https://github.com/prakashg1984/workplace.git'
+    
+        sh "git rev-parse HEAD > .git/commit-id"
+        def commit_id = readFile('.git/commit-id').trim()
+        println commit_id
+    
+    dir('hellotestdocker'){
+        stage('build and push'){
+	        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+	        sh 'docker login --username prakashg84 --password kashprag0712'
+	        sh ("docker build -t hellotest/hellotestdocker .")
+	        sh ("docker tag  hellotest/hellotestdocker prakashg84/test:hellotestdocker")
+	        sh ("docker push prakashg84/test:hellotestdocker")
+    	}
+    	
+    	stage('deploy'){
+    	    sh 'kubectl delete deployments hellotestdocker || true' 
+    	    sh 'kubectl delete services hellotestdockerservice || true'
+	        sh 'kubectl create -f deployment.yaml --validate=false'
+	        sh 'kubectl create -f services.yaml --validate=false'
+    	}
+    }
+    }
+}

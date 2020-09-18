@@ -1,0 +1,24 @@
+{
+	"order": {
+		"loginProfile": {
+			"orderInitiator": "TCM",
+			"profileId": "al49894400085",
+			"userId": "HarrisXMLProd1",
+			"email": "G1028@att.com"
+		},
+		"notes": "Add Notes to TLG Pass",
+		"requestType": "SOR",
+		"statusDetail": {
+			"status": "ACCEPTED"
+		},
+		"type": "CREATE",
+		"termsAndConditions": [{
+			"agreementType": "WCA",
+			"accepted": "Y",
+			"id": "TC_01",
+			"version": "WSA-24-V1",
+			"orderLevelIndicator": true,
+			"timestamp": 1560788742000
+		}]
+	}
+}

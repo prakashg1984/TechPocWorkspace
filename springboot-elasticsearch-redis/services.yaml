@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: springboot-elasticsearch-redisservice
+  labels:
+    app: springboot-elasticsearch-redisservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: springboot-elasticsearch-redis   
+  type: NodePort

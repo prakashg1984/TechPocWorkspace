@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: springboot-ui
+spec:
+  template:
+    metadata:
+      labels:
+        app: springboot-ui
+    spec:
+      containers:
+      - name: springboot-ui
+        image: ${docker.registry}:springboot-ui
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sample-eureka-discovery-server
+spec:
+  template:
+    metadata:
+      labels:
+        app: sample-eureka-discovery-server
+    spec:
+      containers:
+      - name: sample-eureka-discovery-server
+        image: ${docker.registry}:sample-eureka-discovery-server
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

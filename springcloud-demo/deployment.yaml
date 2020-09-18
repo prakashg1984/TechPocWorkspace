@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: springcloud-demo
+spec:
+  template:
+    metadata:
+      labels:
+        app: springcloud-demo
+    spec:
+      containers:
+      - name: springcloud-demo
+        image: ${docker.registry}:springcloud-demo
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

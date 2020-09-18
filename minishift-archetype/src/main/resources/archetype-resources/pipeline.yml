@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "m2repo2"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "${artifactId}"
+spec:
+  source:
+    git:
+      uri: "https://github.com/prakashg1984/workplace" 
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: "${artifactId}/Jenkinsfile"

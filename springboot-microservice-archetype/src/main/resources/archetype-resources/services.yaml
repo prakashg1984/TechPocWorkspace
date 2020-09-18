@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: ${artifactId}service
+  labels:
+    app: ${artifactId}service
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: ${artifactId}   
+  type: NodePort

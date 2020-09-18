@@ -1,0 +1,13 @@
+{
+	"customerId": "C1",
+	"Addresses": {
+		"Zip": "75081",
+		"Country": "US",
+		"City": "Richardson"
+	},
+	"CustomerDetails": {
+		"FirstName": "Prakash",
+		"LastName": "Ganaesan",
+		"Email": "pg@gmail.com"
+	}
+}

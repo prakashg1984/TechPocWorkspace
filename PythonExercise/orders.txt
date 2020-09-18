@@ -1,0 +1,3 @@
+#customerOrderNumber,targetStatus,targetSubStatus,optionalLosgRefId
+22-139206402965299,SUBMITTED,OE_FAIL
+22-1493921414607SL,IN_QUEUE,UE_FAIL,hsia

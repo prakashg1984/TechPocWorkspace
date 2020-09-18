@@ -1,0 +1,4 @@
+#field,word,position,specialcondition,rulesToBeApplied(-)seperated
+TO,domain.com,ANY,,REPLACEMENT
+SUBJECT,SECURE,START,,REVERSAL
+BODY,,,10DIGIT,REPLACEMENT-REVERSAL

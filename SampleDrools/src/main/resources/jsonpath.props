@@ -1,0 +1,6 @@
+contactDetail=$.order.contactDetail
+orderSource=$.order.orderSource
+salesAgent=$.order.salesAgent
+paymentMethod=$.order.paymentTenders[*].paymentMethod
+notes=$.order.notes
+requestId=$.order.requestId

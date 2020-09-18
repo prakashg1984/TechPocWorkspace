@@ -1,0 +1,8 @@
+{
+    "Order": {
+        "CustomerOrderNumber": "${customerOrderNumber}",
+        "OCEOrderNumber": "${orderNumber}",
+        "Groups": {
+        }
+    }
+}

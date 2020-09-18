@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sample-eureka-client
+spec:
+  template:
+    metadata:
+      labels:
+        app: sample-eureka-client
+    spec:
+      containers:
+      - name: sample-eureka-client
+        image: ${docker.registry}:sample-eureka-client
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

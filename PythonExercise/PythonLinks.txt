@@ -1,0 +1,9 @@
+https://docs.python.org/3.7/tutorial/index.html
+
+https://docs.python.org/3.7/index.html
+
+https://www.techbeamers.com/python-tutorial-step-by-step/#tutorial-list
+
+https://www.techbeamers.com/python-tutorial-step-by-step/
+
+https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python

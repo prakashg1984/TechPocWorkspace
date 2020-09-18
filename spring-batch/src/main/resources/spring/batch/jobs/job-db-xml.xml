@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		">
+
+  <job id="xmlJob" xmlns="http://www.springframework.org/schema/batch">
+	<step id="step2">
+	  <tasklet>
+		<chunk reader="itemReader" writer="flatFileItemWriter" 
+			commit-interval="1" />
+		<listeners>
+			<listener ref="customJobListener" />
+			<listener ref="customStepListener" />
+			<listener ref="customItemReaderListener" />
+			<listener ref="customItemWriterListener" />
+	    </listeners>
+	  </tasklet>
+	</step>
+	<listeners>
+		<listener ref="customJobListener" />
+	</listeners>
+  </job>
+  
+  <bean id="itemReader"
+	class="org.springframework.batch.item.database.JdbcCursorItemReader"
+	scope="step">
+	<property name="dataSource" ref="dataSource" />
+	<property name="sql"
+		value="select ID, USERNAME, PASSWORD, AGE from USERS where age > #{jobParameters['age']}" />
+	<property name="rowMapper">
+		<bean class="com.example.mapper.UserRowMapper" />
+	</property>
+  </bean>
+
+
+  <bean id="itemWriter" class="org.springframework.batch.item.xml.StaxEventItemWriter">
+	<property name="resource" value="file:xml/outputs/users.xml" />
+	<property name="marshaller" ref="userUnmarshaller" />
+	<property name="rootTagName" value="users" />
+  </bean>
+
+  <bean id="userUnmarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+	<property name="aliases">
+		<util:map id="aliases">
+			<entry key="user" value="com.example.model.User" />
+		</util:map>
+	</property>
+  </bean>
+  
+  <!-- csv file writer -->
+	<bean id="flatFileItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
+		<property name="resource" value="file:csv/outputs/users_all.csv" />
+		<property name="appendAllowed" value="true" />
+		<property name="lineAggregator">
+			<bean
+				class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+				<property name="delimiter" value="," />
+				<property name="fieldExtractor">
+					<bean
+						class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+						<property name="names" value="id, username, password, age" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>

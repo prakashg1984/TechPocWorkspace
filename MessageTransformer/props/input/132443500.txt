@@ -1,0 +1,9 @@
+To:user@domain.net,user2@domain2.org
+From:origin@somewhere.tv
+Subject:Saying hi
+Body:
+Hi someone,
+
+just wanted to say hi.
+
+Bye!

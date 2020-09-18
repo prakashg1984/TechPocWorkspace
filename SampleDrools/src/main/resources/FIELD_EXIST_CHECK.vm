@@ -1,0 +1,20 @@
+package droolsexample
+
+import com.test.sampledrools.RuleResponse;
+import com.test.sampledrools.Util;
+import java.util.Map;
+
+global com.test.sampledrools.Util myUtil;
+
+dialect "java"
+rule "${ruleDetail.ruleName}"
+when
+	$ruleResponse:RuleResponse() 
+	$orderMap : Map()
+	#foreach ($condition in $ruleDetail.ruleConditionList)
+	eval(myUtil.checkFieldPresent($orderMap,"${condition.source}","${condition.field}"))
+	#end
+	$newValue : Map() from myUtil.findData($orderMap,"${ruleDetail.ruleAction.source}","${ruleDetail.ruleAction.field}","${ruleDetail.ruleAction.targetPosition}","${ruleDetail.ruleAction.defaultValue}")
+then
+	$ruleResponse.addRuleResponse($newValue);
+end
