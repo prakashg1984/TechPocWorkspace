@@ -15,8 +15,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleKafkaConsumer {
 		
-	@Autowired 
-	KafkaConsumerBeanTest kafkaConsumerBean;
+	/*
+	 * @Autowired KafkaConsumerBeanTest kafkaConsumerBean;
+	 */
 	
 	@Autowired
 	SampleKafkaProducer kafkaProducer;
@@ -24,9 +25,9 @@ public class SampleKafkaConsumer {
 	/**
 	 * This method can be used if we need to switch on/off the subscriber based on flag
 	 */
-	@PostConstruct
+	//@PostConstruct
 	public void runConsumer() {
-		kafkaConsumerBean.runConsumer();
+		//kafkaConsumerBean.runConsumer();
 		
 		while(true) {
 			DateFormat dateFormat = new SimpleDateFormat("HH");
