@@ -3,8 +3,8 @@ package com.example.batchprocessing;
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
@@ -18,16 +18,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import com.example.bo.Person;
 import com.example.processor.DummyItemProcessor;
 import com.example.processor.MyProcessor;
-import com.example.processor.PersonItemProcessor;
 import com.example.processor.MyReader;
 import com.example.processor.MyWriter;
+import com.example.processor.PersonItemProcessor;
 
 @Configuration
-@EnableBatchProcessing
+//@EnableBatchProcessing
 public class BatchConfiguration {
 
 	@Autowired
@@ -35,6 +36,9 @@ public class BatchConfiguration {
 
 	@Autowired
 	public StepBuilderFactory stepBuilderFactory;
+	
+	@Autowired
+	public 
 	
 	@Autowired
 	public MyReader myReader;
@@ -70,6 +74,18 @@ public class BatchConfiguration {
 		return new DummyItemProcessor();
 	}
 	
+	@Scheduled(fixedDelay = 5000)
+    public void run(){
+       LOG.info("Processing Scheduled run...");
+       try
+       {
+          Job job = importUserJob();
+          JobParameters jobParameters = new JobParameters();
+          jobLauncher.run(job, jobParameters);
+       }catch(Exception e){
+          
+       }
+    }
 
 	@Bean
 	public FlatFileItemReader<Person> reader() {

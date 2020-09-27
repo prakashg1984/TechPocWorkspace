@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -19,10 +21,6 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-
-import com.att.oce.consumer.OCEConsumerRebalancerListener;
-import com.att.oce.util.OffsetManager;
-
 
 @Component
 public class KafkaConsumerBean {
@@ -37,22 +35,14 @@ public class KafkaConsumerBean {
 	@Value("${kafka.consumer.group.id}")
 	private String consumerGroup;
 	
-	@Autowired
-	OffsetManager offsetManager;
-	
-	@Autowired
-	OCEConsumerRebalancerListener oCEConsumerRebalancerListener;
-	
 	/**
 	 * This method can be used if we need to switch on/off the subscriber based on flag
 	 */
-	@Async
 	public void runConsumer() {
 		ConcurrentKafkaListenerContainerFactory concFactory = (ConcurrentKafkaListenerContainerFactory) factory;
 		final Consumer<String, String> consumer = concFactory.getConsumerFactory().createConsumer();
-		oCEConsumerRebalancerListener.setOCEConsumerRebalancerListener(consumer,consumerGroup);
-		
-		consumer.subscribe(Collections.singletonList(topic),oCEConsumerRebalancerListener);
+		System.out.println("Subscribing to "+topic);
+		consumer.subscribe(Collections.singletonList(topic));
 		
 		List<PartitionInfo> assignedPartitionsInfos = consumer.partitionsFor(topic);
 
@@ -67,7 +57,7 @@ public class KafkaConsumerBean {
 			boolean shouldRun = true;
 			long waitTime = 10000;
 			try {
-				InputStream input = new FileInputStream("C:/ATG//config.properties");
+				InputStream input = new FileInputStream("C://Installables//config.properties");
 				props.load(input);
 				shouldRun = Boolean.valueOf(props.getProperty("shouldRun"));
 				waitTime = Long.valueOf(props.getProperty("waitTime"));
@@ -84,7 +74,6 @@ public class KafkaConsumerBean {
 
 				for (ConsumerRecord<String, String> record : records) {
 					System.out.println("Value For Normal Poll " + record.value());
-					offsetManager.saveOffsetInExternalStore(consumerGroup, record.topic(), record.partition(), record.offset());
 				}
 
 				//consumer.commitAsync();
