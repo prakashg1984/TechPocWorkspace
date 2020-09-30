@@ -29,7 +29,8 @@
   <classpathentry kind="var" path="M2_REPO/com/amazonaws/aws-java-sdk-kinesis/1.11.124/aws-java-sdk-kinesis-1.11.124.jar" sourcepath="M2_REPO/com/amazonaws/aws-java-sdk-kinesis/1.11.124/aws-java-sdk-kinesis-1.11.124-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/amazonaws/aws-java-sdk-dynamodb/1.11.124/aws-java-sdk-dynamodb-1.11.124.jar" sourcepath="M2_REPO/com/amazonaws/aws-java-sdk-dynamodb/1.11.124/aws-java-sdk-dynamodb-1.11.124-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/amazonaws/aws-lambda-java-core/1.1.0/aws-lambda-java-core-1.1.0.jar" sourcepath="M2_REPO/com/amazonaws/aws-lambda-java-core/1.1.0/aws-lambda-java-core-1.1.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/amazonaws/aws-lambda-java-log4j2/1.2.0/aws-lambda-java-log4j2-1.2.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/logging/log4j/log4j-core/2.13.2/log4j-core-2.13.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/amazonaws/aws-lambda-java-log4j2/1.2.0/aws-lambda-java-log4j2-1.2.0.jar" sourcepath="M2_REPO/com/amazonaws/aws-lambda-java-log4j2/1.2.0/aws-lambda-java-log4j2-1.2.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/logging/log4j/log4j-core/2.13.2/log4j-core-2.13.2.jar" sourcepath="M2_REPO/org/apache/logging/log4j/log4j-core/2.13.2/log4j-core-2.13.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/logging/log4j/log4j-api/2.13.2/log4j-api-2.13.2.jar" sourcepath="M2_REPO/org/apache/logging/log4j/log4j-api/2.13.2/log4j-api-2.13.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/amazonaws/aws-java-sdk-stepfunctions/1.11.124/aws-java-sdk-stepfunctions-1.11.124.jar"/>
 </classpath>
