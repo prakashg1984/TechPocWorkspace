@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: springboot-cassandra-sample
+spec:
+  template:
+    metadata:
+      labels:
+        app: springboot-cassandra-sample
+    spec:
+      containers:
+      - name: springboot-cassandra-sample
+        image: ${docker.registry}:springboot-cassandra-sample
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata: 
+  name: springboot-cassandra-sampleservice
+  labels:
+    app: springboot-cassandra-sampleservice
+spec: 
+  ports:    
+     - protocol: TCP
+       port: 8085
+       targetPort: 8080
+  selector: 
+      app: springboot-cassandra-sample   
+  type: NodePort
