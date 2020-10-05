@@ -1,0 +1,4 @@
+com\amazonaws\lambda\order\ValidateOrderHandler.class
+com\amazonaws\lambda\order\CreateOrderHandler.class
+com\amazonaws\lambda\order\DetermineFraudHandler.class
+com\amazonaws\lambda\order\DynamoDBUtil.class
