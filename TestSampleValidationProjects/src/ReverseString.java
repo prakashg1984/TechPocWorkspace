@@ -23,7 +23,11 @@ public class ReverseString {
 		for(int i=data.length()-1 ; i >=0; i--){
 			reverse = reverse + data.charAt(i);
 		}
+		
+		System.out.println("new StringBuffer(p).reverse().toString() "+new StringBuffer(data).reverse().toString());
+		
 		return reverse;
+
 	}
 	
 	private static String reverseEachWord(String data){
