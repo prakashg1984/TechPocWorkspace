@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
-Implementation-Title: dog-service-jpa-master
+Implementation-Title: springboot-data-jpa
 Implementation-Version: 1.0-SNAPSHOT
-Built-By: Prakash_G01
+Built-By: PGPS
 Implementation-Vendor-Id: com.pg
-Build-Jdk: 1.8.0_202
-Implementation-URL: http://projects.spring.io/spring-boot/dog-service-
- jpa-master/
+Build-Jdk: 1.8.0_191
+Implementation-URL: http://projects.spring.io/spring-boot/springboot-d
+ ata-jpa/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 

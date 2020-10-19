@@ -8,8 +8,6 @@
 <body>
 	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!
 		- Without Authentication</h1>
-	<h1 th:inline="text">Hello [[${#httpServletRequest.attribute}]]!
-		- Without Authentication</h1>
 	<form action="#" th:action="@{/hello}" th:object="${greeting}"
 		method="post">
 		<table>
