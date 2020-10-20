@@ -1,5 +1,5 @@
 
-public class MainClass {
+public class MainClassBinaryTree {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -9,7 +9,8 @@ public class MainClass {
         tree1.printPreOrderTraversal(tree1.root);
         tree1.printInOrderTraversal(tree1.root);
         tree1.printPostOrderTraversal(tree1.root);
-        
+        tree1.printLevelOrder(tree1.root);
+
         int height = tree1.height(tree1.root);
         System.out.println("Height "+height);
         

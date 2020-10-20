@@ -64,7 +64,7 @@ public class MyBinaryTree {
 	  if (rootNode == null) 
             return; 
 		if(distance == 0){
-			System.out.println(rootNode.getData());
+			System.out.println("nodeAtKDistance "+rootNode.getData());
 		}else{
 			nodeAtKDistance(rootNode.left, distance - 1);
 			nodeAtKDistance(rootNode.right, distance - 1);
