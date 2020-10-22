@@ -1,8 +1,14 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: testnewmsprojectkube
+  labels:
+    app: testnewmsprojectkube
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testnewmsprojectkube
   template:
     metadata:
       labels:
@@ -10,7 +16,20 @@ spec:
     spec:
       containers:
       - name: testnewmsprojectkube
-        image: ${docker.registry}:testnewmsprojectkube
+        image: prakashg84/test:testnewmsprojectkube
         imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: myconfig
+          mountPath: "/deployments/config/"
+          readOnly: true  
         ports:
         - containerPort: 8080
+      volumes:
+      - name: myconfig
+        configMap:
+          name: myconfigmap
+          items:
+          - key: application.properties
+            path: application.properties
+          - key: user-interface.properties
+            path: user-interface.properties
