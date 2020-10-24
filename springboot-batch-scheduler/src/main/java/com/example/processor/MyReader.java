@@ -6,7 +6,7 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("MyReader")
 public class MyReader implements ItemReader<String> {
 
 	private String[] messages = { "Prakash",

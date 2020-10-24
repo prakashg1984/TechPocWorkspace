@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("MyWriter")
 public class MyWriter implements ItemWriter<String> {
 
 	@Override

@@ -3,7 +3,7 @@ package com.example.processor;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("MyProcessor")
 public class MyProcessor implements ItemProcessor<String, String> {
 
 	@Override

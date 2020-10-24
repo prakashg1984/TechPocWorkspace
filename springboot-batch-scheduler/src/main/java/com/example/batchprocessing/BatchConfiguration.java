@@ -14,9 +14,9 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import com.example.processor.MyProcessor;
@@ -24,10 +24,11 @@ import com.example.processor.MyReader;
 import com.example.processor.MyWriter;
 
 @Configuration
-//@Import({BatchSchedulerConfig.class})
+@EnableBatchProcessing
 public class BatchConfiguration {
 
     @Autowired
+    @Qualifier("SimpleJobLauncher")
     private SimpleJobLauncher jobLauncher;
 
     @Autowired
@@ -37,15 +38,25 @@ public class BatchConfiguration {
     public StepBuilderFactory stepBuilderFactory;
     
     @Autowired
+    @Qualifier("MyReader")
 	public MyReader myReader;
 
 	@Autowired
+	@Qualifier("MyWriter")
 	public MyWriter myWriter;
 	
 	@Autowired
+	@Qualifier("MyProcessor")
 	public MyProcessor myProcessor;
 	
-    @Scheduled(cron = "1 53/3 17 * * ?")
+	@Autowired
+	@Qualifier("processOrderJob")
+	Job processOrderJob;
+	
+	@Autowired
+	Job importUserJob;
+	
+    @Scheduled(cron = "0 * * * * *")
     public void perform() throws Exception {
 
         System.out.println("Job Started at :" + new Date());
@@ -53,12 +64,16 @@ public class BatchConfiguration {
         JobParameters param = new JobParametersBuilder().addString("JobID",
                 String.valueOf(System.currentTimeMillis())).toJobParameters();
 
-        JobExecution execution = jobLauncher.run(processOrderJob(), param);
+        JobExecution execution = jobLauncher.run(processOrderJob, param);
 
         System.out.println("Job finished with status :" + execution.getStatus());
+        
+        JobExecution execution2 = jobLauncher.run(importUserJob, param);
+
+        System.out.println("Job finished with status :" + execution2.getStatus());
     }
 
-    @Bean
+    @Bean("processOrderJob")
     public Job processOrderJob() {
         return jobBuilderFactory.get("processOrderJob")
                 .incrementer(new RunIdIncrementer())
