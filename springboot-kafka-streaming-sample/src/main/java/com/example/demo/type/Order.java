@@ -11,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Order {
 
-	 private Map<String, String> any = new HashMap<>();
+	 private Map<String, Object> any = new HashMap<>();
 
     @JsonAnyGetter
-    public Map<String, String> getAny() {
+    public Map<String, Object> getAny() {
     	return any;
     }
     
     @JsonAnySetter
-    public void setAddress(String name, String value) {
+    public void setAddress(String name, Object value) {
     	this.any.put(name, value);
     }
 

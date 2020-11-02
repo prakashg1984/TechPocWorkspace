@@ -3,6 +3,7 @@ package com.example.demo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -113,7 +114,11 @@ public class MyRunner implements CommandLineRunner {
         KStream<String, Order> orderStream = streamsBuilder.stream("ordertopic",
             Consumed.with(CustomOrderSerdes.String(), CustomOrderSerdes.Order()));
 
-        KGroupedStream<String, Order> productGroupStream = orderStream.groupBy(
+        KGroupedStream<List<String>, Order> productGroupStream = orderStream.filter((k, v) -> 
+        		v.getAny().get("losgs") != null 
+        		&& v.getAny().get("channel") != null &&
+        		v.getAny().get("channel").toString().equalsIgnoreCase("DE-MOBILITY"))
+        		.groupBy(
             (k, v) -> v.getAny().get("product").toString(),
             Serialized.with(CustomOrderSerdes.String(),
             		CustomOrderSerdes.Order()));

@@ -13,7 +13,9 @@ class Helper {
 	Map<String,String> simTypeDummyICCIDMap;
 
 	String fetchLosgTypes(order) {
-		List<String> losgType = order?.losgs?.findAll {losg -> losg.losgType}?.collect({it.losgType})
+		print 'order '+order.getAny()
+		
+		List<String> losgType = order.getAny().losgs?.findAll {losg -> losg.losgType}?.collect({it.losgType})
 		
 		print 'losgType '+losgType.toString()
 		
