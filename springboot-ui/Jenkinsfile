@@ -26,12 +26,12 @@ node {
     	
     	stage('create deployment'){
     	    sh 'kubectl delete deployments springboot-ui || true' 
-	    sh 'kubectl create -f deployment.yaml --validate=false'
+	    sh 'kubectl apply -f deployment.yaml --validate=false'
     	}
     	
     	stage('create service'){
 	    sh 'kubectl delete services springboot-uiservice || true'
-	    sh 'kubectl create -f services.yaml --validate=false'
+	    sh 'kubectl apply -f services.yaml --validate=false'
     	}
     }
 }
