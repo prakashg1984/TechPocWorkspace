@@ -11,11 +11,11 @@ node {
     dir('springboot-ui'){
         stage('build'){
 	        sh "mvn -Dmaven.test.failure.ignore clean install"
-	        sh 'docker login --username prakashg84 --password pgPS@0714'
+	        sh 'docker login --username prakashg84 --password '
     	}
     	
     	stage('create docker image'){
-		        sh 'docker login --username prakashg84 --password pgPS@0714'
+		        sh 'docker login --username prakashg84 --password '
 		        sh ("docker build -t springboot-ui .")
 	            sh ("docker tag  springboot-ui prakashg84/test:springboot-ui")
     	}
