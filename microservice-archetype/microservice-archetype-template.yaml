@@ -16,4 +16,3 @@ spec:
   owner: oce-att
   system: microservice-archetype
   dependsOn: ['resource:artists-db']
-
