@@ -21,7 +21,7 @@ spec:
     openapi: "3.0.0"
     info:
       version: 1.0.0
-      title: Swagger Petstore
+      title: Swagger OrderAPI
       license:
         name: MIT
     servers:
@@ -114,7 +114,7 @@ spec:
               type: string
             tag:
               type: string
-        order:
+        orders:
           type: array
           items:
             $ref: "#/components/schemas/order"
