@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Address Component
+  description: Address main website
+  annotations:
+    jenkins.io/github-folder: 'address-rest-api'
+    backstage.io/techdocs-ref: ./README.md
+  tags:
+    - java
+    - springboot
+    - address
+  links:
+    - url: https://github.com/prakashg1984/TechPocWorkspace/tree/master/address-rest-api
+      title: Github URL
+      icon: web
+spec:
+  type: Address Component
+  lifecycle: production
+  owner: OCE-ATT
+  system: OCE Portal
