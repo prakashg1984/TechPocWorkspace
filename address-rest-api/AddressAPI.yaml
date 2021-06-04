@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: addressServiceAPI
-  description: The addressServiceAPI API
+  name: address-rest-api
+  description: The address-rest-api API
   tags:
     - store
     - rest
