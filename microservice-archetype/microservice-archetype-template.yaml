@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: microservice-archetype
+  description: microservice-archetype
+  tags:
+    - java
+    - springboot
+  links:
+    - url: https://example.com/cloud
+      title: Github URL
+      icon: cloud
+spec:
+  type: service
+  lifecycle: experimental
+  owner: oce-att
+  system: microservice-archetype
+  dependsOn: ['']
