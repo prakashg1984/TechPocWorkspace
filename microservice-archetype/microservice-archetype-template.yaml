@@ -15,5 +15,5 @@ spec:
   lifecycle: experimental
   owner: oce-att
   system: microservice-archetype
-  dependsOn: ['resource:jersey']
+  dependsOn: ['resource:artists-db']
 
