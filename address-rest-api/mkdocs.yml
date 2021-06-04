@@ -1,0 +1,7 @@
+site_name: 'address-rest-api'
+
+nav:
+  - Home: index.md
+
+plugins:
+  - techdocs-core
