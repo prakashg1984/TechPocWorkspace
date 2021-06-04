@@ -6,6 +6,7 @@ metadata:
   annotations:
     jenkins.io/github-folder: 'address-rest-api'
     backstage.io/techdocs-ref: ./README.md
+    sonarqube.org/project-key: address-rest-api
   tags:
     - java
     - springboot
