@@ -15,7 +15,7 @@ metadata:
       title: Github URL
       icon: web
 spec:
-  type: AddressService
+  type: service
   lifecycle: production
   owner: OCE-ATT
   system: OCE Portal
