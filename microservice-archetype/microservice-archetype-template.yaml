@@ -5,7 +5,7 @@ metadata:
   description: microservice-archetype main website
   annotations:
     jenkins.io/github-folder: 'microservice-archetype'
-    backstage.io/techdocs-ref: README.md
+    backstage.io/techdocs-ref: ./README.md
   tags:
     - java
     - springboot
