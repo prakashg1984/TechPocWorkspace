@@ -8,6 +8,7 @@ metadata:
     backstage.io/techdocs-ref: url:https://github.com/prakashg1984/TechPocWorkspace/tree/master/address-rest-api
     sonarqube.org/project-key: address-rest-api
     backstage.io/kubernetes-id: address-rest-api
+    kafka.apache.org/consumer-groups: cluster-name/consumer-group-name
   tags:
     - java
     - springboot
