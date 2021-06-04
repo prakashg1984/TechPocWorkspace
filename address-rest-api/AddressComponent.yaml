@@ -19,3 +19,5 @@ spec:
   lifecycle: production
   owner: OCE-ATT
   system: OCE Portal
+  providesApis:
+    - address-rest-api
