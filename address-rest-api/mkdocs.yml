@@ -1,7 +1,9 @@
 site_name: 'address-rest-api'
-docs_dir: ''
+repo_url: https://github.com/prakashg1984/TechPocWorkspace/tree/master/address-rest-api
+docs_dir: 'src'
 nav:
   - Home: index.md
-
+theme:
+  - docs_dir: src
 plugins:
   - techdocs-core
