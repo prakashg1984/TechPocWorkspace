@@ -5,7 +5,7 @@ metadata:
   description: Address main website
   annotations:
     jenkins.io/github-folder: 'address-rest-api'
-    backstage.io/techdocs-ref: ./README.md
+    backstage.io/techdocs-ref: url:https://github.com/prakashg1984/TechPocWorkspace/tree/master/address-rest-api
     sonarqube.org/project-key: address-rest-api
   tags:
     - java
