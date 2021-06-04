@@ -15,4 +15,3 @@ spec:
   lifecycle: experimental
   owner: oce-att
   system: microservice-archetype
-  dependsOn: ['']
