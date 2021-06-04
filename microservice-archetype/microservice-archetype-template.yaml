@@ -10,6 +10,8 @@ metadata:
     - url: https://github.com/prakashg1984/TechPocWorkspace/edit/master/microservice-archetype
       title: Github URL
       icon: web
+  annotations:
+    jenkins.io/github-folder: 'microservice-archetype'
 spec:
   type: Maven Archtype
   lifecycle: production
