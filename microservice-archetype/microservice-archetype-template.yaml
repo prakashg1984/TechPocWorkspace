@@ -3,8 +3,15 @@ kind: Component
 metadata:
   name: microservice-archetype
   description: microservice-archetype main website
+  tags:
+    - java
+    - springboot
+  links:
+    - url: https://github.com/prakashg1984/TechPocWorkspace/edit/master/microservice-archetype
+      title: Github URL
+      icon: web
 spec:
-  type: website
+  type: Maven Archtype
   lifecycle: production
-  owner: team-a
+  owner: OCE-ATT
   system: microservice-archetype-portal
