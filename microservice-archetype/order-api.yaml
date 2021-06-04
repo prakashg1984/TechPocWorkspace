@@ -43,7 +43,7 @@ spec:
                 format: int32
           responses:
             '200':
-              description: A paged array of pets
+              description: A paged array of Orders
               headers:
                 x-next:
                   description: A link to the next page of responses
