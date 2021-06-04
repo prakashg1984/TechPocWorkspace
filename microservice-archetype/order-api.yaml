@@ -60,10 +60,10 @@ spec:
                   schema:
                     $ref: "#/components/schemas/Error"
         post:
-          summary: Create a pet
-          operationId: createPets
+          summary: Create a Order
+          operationId: createOrder
           tags:
-            - pets
+            - orders
           responses:
             '201':
               description: Null response
@@ -76,7 +76,7 @@ spec:
       /orders/{orderid}:
         get:
           summary: Info for a specific orderid
-          operationId: showPetById
+          operationId: showOrderById
           tags:
             - orderid
           parameters:
@@ -94,7 +94,7 @@ spec:
                   schema:
                     $ref: "#/components/schemas/orders"
             default:
-              description: unexpected error
+              description: unexpected error in get
               content:
                 application/json:
                   schema:
