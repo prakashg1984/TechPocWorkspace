@@ -107,12 +107,12 @@ spec:
             - orderId
             - channel
           properties:
-            id:
+            orderId:
               type: integer
               format: int64
-            name:
+            channel:
               type: string
-            tag:
+            firstName:
               type: string
         orders:
           type: array
