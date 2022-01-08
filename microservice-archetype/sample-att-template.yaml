@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Template
+metadata:
+  name: idse-jersey-template
+  title: Spring Boot Jersey Service
+  description: Create a simple microservice using IDSE Jersey and Spring Boot Java
+  tags:
+    - att
+    - java
+    - springboot
+spec:
+  owner: pg939j@att.com
+  templater: ATT
+  type: service
+  path: '.'
+  schema:
+    required:
+      - component_id
+      - description
+    properties:
+      component_id:
+        title: Name
+        type: string
+        description: Unique name of the component
+      description:
+        title: Description
+        type: string
+        description: Help others understand what this service does.
+      http_port:
+        title: Port
+        type: integer
+        default: 8080
+        description: The port to run the service on

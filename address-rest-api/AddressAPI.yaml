@@ -1,0 +1,131 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: address-rest-api
+  description: The address-rest-api API
+  tags:
+    - store
+    - rest
+  links:
+    - url: https://github.com/swagger-api/swagger-petstore
+      title: GitHub Repo
+      icon: github
+    - url: https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v3.0/petstore.yaml
+      title: API Spec
+      icon: code
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: att-oce
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: Swagger addressAPI
+      license:
+        name: MIT
+    servers:
+      - url: http://att.com/addressserviceapi/v1
+    paths:
+      /address:
+        get:
+          summary: List all addresss
+          operationId: listaddresss
+          tags:
+            - addresss
+          parameters:
+            - name: addressId
+              in: query
+              description: AddressId to return
+              required: false
+              schema:
+                type: integer
+                format: int32
+          responses:
+            '200':
+              description: A paged array of addresss
+              headers:
+                x-next:
+                  description: A link to the next page of responses
+                  schema:
+                    type: string
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/addresss"
+            default:
+              description: unexpected error
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Error"
+        post:
+          summary: Create a address
+          operationId: createaddress
+          tags:
+            - addresss
+          responses:
+            '201':
+              description: Null response
+            default:
+              description: unexpected error
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Error"
+      /addresss/{addressid}:
+        get:
+          summary: Info for a specific addressid
+          operationId: showaddressById
+          tags:
+            - addressid
+          parameters:
+            - name: addressid
+              in: path
+              required: true
+              description: The id of the address to retrieve
+              schema:
+                type: string
+          responses:
+            '200':
+              description: Expected response to a valid request
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/addresss"
+            default:
+              description: unexpected error in get
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Error"
+    components:
+      schemas:
+        address:
+          type: object
+          required:
+            - addressId
+            - channel
+          properties:
+            addressId:
+              type: integer
+              format: int64
+            channel:
+              type: string
+            firstName:
+              type: string
+        addresss:
+          type: array
+          items:
+            $ref: "#/components/schemas/address"
+        Error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: integer
+              format: int32
+            message:
+              type: string
