@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
 ---
 spring:
   profiles: dev
@@ -22,9 +22,9 @@ spring:
 spring:
   profiles: prod
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/test
+    url: r2dbc:postgresql://localhost:5432/reactivedb
     username: postgres
-    password: postgres
+    password: password
   logging:
     level:
       org.springframework.data.r2dbc: Debug

@@ -40,6 +40,8 @@ public class UserService {
     }
 
     public Mono<User> updateUser(Integer userId,  User user){
+        log.info("Updating User : {} ", user);
+
         return userRepository.findById(userId)
                 .flatMap(dbUser -> {
                     dbUser.setAge(user.getAge());
@@ -61,7 +63,7 @@ public class UserService {
     public Flux<User> fetchUsers(List<Integer> userIds) {
         return Flux.fromIterable(userIds)
                 .parallel()
-                .runOn(Schedulers.elastic())
+                .runOn(Schedulers.parallel())
                 .flatMap(i -> findById(i))
                 .ordered((u1, u2) -> u2.getId() - u1.getId());
     }
@@ -71,8 +73,8 @@ public class UserService {
     }
 
     public Mono<UserDepartmentDTO> fetchUserAndDepartment(Integer userId){
-        Mono<User> user = findById(userId).subscribeOn(Schedulers.elastic());
-        Mono<Department> department = getDepartmentByUserId(userId).subscribeOn(Schedulers.elastic());
+        Mono<User> user = findById(userId).subscribeOn(Schedulers.parallel());
+        Mono<Department> department = getDepartmentByUserId(userId).subscribeOn(Schedulers.parallel());
         return Mono.zip(user, department, userDepartmentDTOBiFunction);
     }
 
