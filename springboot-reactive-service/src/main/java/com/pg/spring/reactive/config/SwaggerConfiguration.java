@@ -28,8 +28,8 @@ public class SwaggerConfiguration {
     private ApiInfo metaInfo() {
 
         ApiInfo apiInfo = new ApiInfo(
-                "Springboot Reactive WebClient",
-                "Springboot Reactive WebClient",
+                "Springboot Reactive Service",
+                "Springboot Reactive Service",
                 "1.0",
                 "Terms of Service",
                 new Contact("Prakash Ganaesan", "https://www.linkedin.com/in/prakash-ganaesan-b92a9217/",
