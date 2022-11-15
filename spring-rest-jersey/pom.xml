@@ -24,7 +24,7 @@
         <wiremock.version>2.25.1</wiremock.version>
         <assertj-core.version>3.10.0</assertj-core.version>
         <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
-        <jackson.version>2.9.10</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <org.slf4j.version>1.7.30</org.slf4j.version>
 	</properties>
 	
