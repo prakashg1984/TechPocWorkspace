@@ -1,6 +1,7 @@
 package com.pg.spring.reactive.service;
 
 import com.pg.spring.reactive.dto.UserDepartmentDTO;
+import com.pg.spring.reactive.dto.UserDepartmentDTONew;
 import com.pg.spring.reactive.model.Department;
 import com.pg.spring.reactive.model.User;
 import com.pg.spring.reactive.repository.DepartmentRepository;
@@ -69,6 +70,7 @@ public class UserService {
     }
 
     private Mono<Department> getDepartmentByUserId(Integer userId){
+    	UserDepartmentDTONew userDepartmentDTO = UserDepartmentDTONew.newInstance();
         return departmentRepository.findByUserId(userId);
     }
 

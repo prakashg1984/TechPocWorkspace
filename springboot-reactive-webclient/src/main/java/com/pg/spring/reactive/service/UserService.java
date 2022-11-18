@@ -23,7 +23,7 @@ public class UserService {
 	       return client.get()
 	                .uri("/users/{userId}", userId)
 	                .retrieve()
-	                .bodyToMono(User.class).log(" User fetched ");
+	                .bodyToMono(User.class).log(" Get User ");
 	    }
 
 	    public Flux<User> getAllUsers(){

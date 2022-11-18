@@ -2,6 +2,7 @@ package com.spring.azure.config;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import com.azure.cosmos.CosmosDatabase;
 import com.azure.cosmos.models.CosmosContainerProperties;
 import com.azure.cosmos.models.CosmosContainerResponse;
 import com.azure.cosmos.models.CosmosDatabaseResponse;
+import com.azure.cosmos.models.UniqueKeyPolicy;
 
 @Configuration
 public class AzureClientConfig {
@@ -27,12 +29,17 @@ public class AzureClientConfig {
 	@Value("${spring.cloud.azure.cosmos.database}")
 	private String databaseName;   
 	
-	@Value("${cosmos.database.container}")
-	private String containerName; 
+	@Value("${cosmos.database.taskdetails.container}")
+	private String taskDetailsContainerName; 
 	
-	private CosmosClient client;
-	private CosmosDatabase database;
-	private CosmosContainer container;
+	@Value("${cosmos.database.queuemaster.container}")
+	private String queueMasterContainerName; 
+	
+	@Autowired
+	CosmosClient client;
+	
+	@Autowired
+	CosmosDatabase database;
 	
 	@Bean
 	public CosmosClient createCosmosClient() {
@@ -53,6 +60,7 @@ public class AzureClientConfig {
 	
 	@Bean
 	public CosmosDatabase createCosmosDatabase() {
+		System.out.println("Creating database");
 	//  Create database if not exists
         CosmosDatabaseResponse databaseResponse = client.createDatabaseIfNotExists(databaseName);
         database = client.getDatabase(databaseResponse.getProperties().getId());
@@ -60,15 +68,34 @@ public class AzureClientConfig {
         return database;
 	}
 
-	@Bean
+	@Bean(name = "taskDetailsContainer")
 	public CosmosContainer createCosmosContainer() {
 		CosmosContainerProperties containerProperties =
-	            new CosmosContainerProperties(containerName, "/taskid");
-
+	            new CosmosContainerProperties(taskDetailsContainerName, "/taskId");
+		
+		System.out.println("Database1 "+database);
+		System.out.println("containerProperties1 "+containerProperties);
+		
         CosmosContainerResponse containerResponse = database.createContainerIfNotExists(containerProperties);
-        container = database.getContainer(containerResponse.getProperties().getId());
+        CosmosContainer container = database.getContainer(containerResponse.getProperties().getId());
         
         return container;
 	}
+	
+	
+	@Bean(name = "queueMasterContainer")
+	public CosmosContainer createQueueMasterCosmosContainer() {
+		CosmosContainerProperties containerProperties = new CosmosContainerProperties(queueMasterContainerName,
+				"/QueueId");
+
+		System.out.println("Database2 " + database);
+		System.out.println("containerProperties2 " + containerProperties);
+
+		CosmosContainerResponse containerResponse = database.createContainerIfNotExists(containerProperties);
+		CosmosContainer container = database.getContainer(containerResponse.getProperties().getId());
+
+		return container;
+	}
+	 
 
 }

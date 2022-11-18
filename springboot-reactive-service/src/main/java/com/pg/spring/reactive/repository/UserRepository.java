@@ -6,6 +6,6 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 
 public interface UserRepository extends ReactiveCrudRepository<User,Integer> {
-    @Query("select * from user where age >= $1")
+    @Query("select * from user where age >= :age")
     Flux<User> findByAge(int age);
 }

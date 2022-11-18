@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @Builder
-@NoArgsConstructor
+//@NoArgsConstructor
 public class UserDepartmentDTO {
     private Integer userId;
     private String userName;

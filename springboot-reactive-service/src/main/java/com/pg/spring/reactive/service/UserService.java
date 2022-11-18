@@ -28,13 +28,14 @@ public class UserService {
 
     public Flux<User> getAllUsers(){
     	log.info("Before getAllUsers");
-    	Flux<User> users = userRepository.findAll();
+    	Flux<User> users = userRepository.findAll().log();
     	log.info("After getAllUsers");
     	return users;
     }
 
     public Mono<User> findById(Integer userId){
-        return userRepository.findById(userId);
+    	log.info("Invoking findById {} ",userId);
+        return userRepository.findById(userId).log();
     }
 
     public Mono<User> updateUser(Integer userId,  User user){
@@ -60,9 +61,10 @@ public class UserService {
 
     public Flux<User> fetchUsers(List<Integer> userIds) {
         return Flux.fromIterable(userIds)
-                .parallel()
+                .parallel(3)
                 .runOn(Schedulers.parallel())
-                .flatMap(i -> findById(i))
+                .log("Fetch Users")
+                .flatMap(i -> findById(i))                
                 .ordered((u1, u2) -> u2.getId() - u1.getId());
     }
 

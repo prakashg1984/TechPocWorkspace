@@ -1,5 +1,6 @@
 package com.pg.spring.reactive.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +16,8 @@ import lombok.Setter;
 @Setter
 @Table("user")
 public class User {
-
+	
+	@Id
 	private Integer id;
 	private String name;
 	private int age;
