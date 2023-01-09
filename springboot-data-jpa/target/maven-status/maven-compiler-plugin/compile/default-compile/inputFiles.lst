@@ -1,7 +1,10 @@
-C:\Users\prakash_g01\git\TechPocWorkspace\dog-service-jpa-master\src\main\java\com\amitph\spring\dogs\web\DogsController.java
-C:\Users\prakash_g01\git\TechPocWorkspace\dog-service-jpa-master\src\main\java\com\amitph\spring\dogs\repo\DogsRepository.java
-C:\Users\prakash_g01\git\TechPocWorkspace\dog-service-jpa-master\src\main\java\com\amitph\spring\dogs\repo\Dog.java
-C:\Users\prakash_g01\git\TechPocWorkspace\dog-service-jpa-master\src\main\java\com\amitph\spring\dogs\service\DogsService.java
-C:\Users\prakash_g01\git\TechPocWorkspace\dog-service-jpa-master\src\main\java\com\amitph\spring\dogs\service\DogNotFoundException.java
-C:\Users\prakash_g01\git\TechPocWorkspace\dog-service-jpa-master\src\main\java\com\amitph\spring\dogs\model\DogDto.java
-C:\Users\prakash_g01\git\TechPocWorkspace\dog-service-jpa-master\src\main\java\com\amitph\spring\dogs\Application.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\model\Name.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\SpringbootDataJpa2Application.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\service\NameNotFoundException.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\web\NameController.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\web\PersonController.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\repo\NameRepository.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\model\Person.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\repo\PersonRepository.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\service\NameService.java
+C:\Workplace\TechPocWorkspace\springboot-data-jpa2\src\main\java\com\pg\springjpa\service\PersonService.java

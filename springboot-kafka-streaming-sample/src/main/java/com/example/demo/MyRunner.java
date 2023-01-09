@@ -3,7 +3,6 @@ package com.example.demo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -35,6 +34,11 @@ import com.example.demo.service.KafkaProducerService;
 import com.example.demo.type.Order;
 import com.example.demo.type.OrderAggregate;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.LongTaskTimer;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
+
 @Component
 public class MyRunner implements CommandLineRunner {
 
@@ -45,9 +49,24 @@ public class MyRunner implements CommandLineRunner {
     
     @Autowired 
     Helper helper;
+    
+    @Autowired
+    MeterRegistry meterRegistry;
 
+    Counter totalOrders;
+    Timer findPersonTimer;
+
+    
 	@Override
 	public void run(String... args) throws Exception {
+		
+		totalOrders = Counter.builder("total.orders")
+        		.tag("type", "Order")
+        		.description("Number of Total Orders")
+        		.register(this.meterRegistry);
+		
+        findPersonTimer = meterRegistry.timer("http_requests", "method", "GET");
+
 		
 		//startKStream();
 		startOrderKStream();
@@ -71,12 +90,9 @@ public class MyRunner implements CommandLineRunner {
 		final Serde<String> stringSerde = Serdes.String();
 		final Serde<Long> longSerde = Serdes.Long();
 
-
-		//KStream<String, String> textLines = builder.stream("SAMPLE_DEV_TOPIC2");
 		KStream<String, String> textLines = builder.stream("SAMPLE_DEV_TOPIC2",
 			    Consumed.with(stringSerde, stringSerde));
-		
-		
+				
 		/*KTable<String, Long> wordCounts = textLines
 				.flatMapValues(textLine -> Arrays.asList(textLine.toLowerCase().split("W+")))
 				.groupBy((key, word) -> word)
@@ -87,9 +103,6 @@ public class MyRunner implements CommandLineRunner {
 				.flatMapValues(textLine -> Arrays.asList(textLine.toLowerCase().split("W+")))
 				.groupBy((key, word) -> word)
 				.count(Materialized.as("counts-store"));
-		
-		//System.out.println("wordCounts "+wordCounts.toStream().toTable().toStream().toString());
-		
 		
 		wordCounts.toStream().to("WordsWithCountsTopic", Produced.with(Serdes.String(), Serdes.Long()));
 		KafkaStreams streams = new KafkaStreams(builder.build(), props);
@@ -114,7 +127,7 @@ public class MyRunner implements CommandLineRunner {
         KStream<String, Order> orderStream = streamsBuilder.stream("ordertopic",
             Consumed.with(CustomOrderSerdes.String(), CustomOrderSerdes.Order()));
 
-        KGroupedStream<List<String>, Order> productGroupStream = orderStream.filter((k, v) -> 
+        KGroupedStream<String, Order> productGroupStream = orderStream.filter((k, v) -> 
         		v.getAny().get("losgs") != null 
         		&& v.getAny().get("channel") != null &&
         		v.getAny().get("channel").toString().equalsIgnoreCase("DE-MOBILITY"))
@@ -157,7 +170,18 @@ public class MyRunner implements CommandLineRunner {
                 .withValueSerde(CustomOrderSerdes.OrderAggregate())
         );
         
+        Timer.Sample sample = Timer.start(meterRegistry);
+
         
+        try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        sample.stop(meterRegistry.timer("my.timer", "response", "200"));
+
         productTable.toStream().foreach(
                 (k, v) -> System.out.println("Key = " + k + " Value = " + v.toString()));
         

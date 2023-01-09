@@ -29,7 +29,9 @@ public class PrintAnagrams {
 		
 		anagramMap.forEach((k,v) -> {
 			if(v.size() > 1) {
-        		System.out.println(v);
+        		System.out.println("Anagrams : "+v);
+			}else {
+        		System.out.println("Not Anagrams : "+v);
 			}
 		});
 		

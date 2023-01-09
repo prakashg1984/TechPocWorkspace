@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.amazonaws.lambda</groupId>
-  <artifactId>demo</artifactId>
+  <artifactId>order-capture-lambda</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

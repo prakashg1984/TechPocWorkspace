@@ -38,6 +38,9 @@ public class CSVFileProcessorJob {
     
     @Autowired
     private DataSource dataSource;
+    
+    @Autowired
+    private JobCompletionNotificationListener jobCompletionNotificationListener;
  
     @Bean
     public Job readCSVFile() {
@@ -45,6 +48,7 @@ public class CSVFileProcessorJob {
                 .get("readCSVFile")
                 .incrementer(new RunIdIncrementer())
                 .start(step())
+                .listener(jobCompletionNotificationListener)
                 .build();
     }
  

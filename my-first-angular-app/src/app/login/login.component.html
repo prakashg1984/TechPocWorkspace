@@ -20,13 +20,13 @@
 					</div>
 
 					<div *ngIf="!valid" class="error">Invalid Credentials...Please try again...</div>
-					<div *ngIf="valid" >Login Success {{ login.userName }}</div>
 					<br />
 
 					<div class="form-group">
 						<span class="col-xs-4"></span>
 						<div class="col-xs-3">
 							<button (click)="onSubmit()" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
+							<button (click)="onRegister()" class="btn btn-primary">Register</button>
 						</div>
 						<span class="col-xs-5" style="top:8px">
 							<a [routerLink]="['/welcome']" style="color:#337ab7;text-decoration: underline;">Cancel</a>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hello',
@@ -7,18 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelloComponent implements OnInit {
 
-  courseName: string = "Angular";
+  name: string = "Default";
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.name = sessionStorage.getItem('loggedInUser');
+  }
 
   ngOnInit(): void {
   }
-  
-  changeName() {
-        this.courseName = "New Angular";
-    }
 
-	changeBack() {
-        this.courseName = "Angular";
-    }
+  logOut() {
+    sessionStorage.removeItem('loggedInUser');
+    this.router.navigate(['/welcome']);
+  }
 }

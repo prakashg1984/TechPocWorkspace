@@ -20,7 +20,7 @@ public class KubeJavaClientTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-	    String kubeConfigPath = "C:\\Workplace\\TechPocWorkspace\\sample-maven-project\\KubeConfig";
+	    String kubeConfigPath = "C:\\Users\\PGPS\\.kube\\config";
 
 	    ApiClient client;
 		try {
@@ -44,7 +44,7 @@ public class KubeJavaClientTest {
 		    V1Pod newPod = createPod(oldPod);
 		    
 		    System.out.println("Before creating Pod : "+newPod.getMetadata().getName());
-		    api.createNamespacedPodAsync("my-namespace", newPod, false, null , null, apiCallback);
+		    api.createNamespacedPodAsync("default", newPod, false, null , null, apiCallback);
 		    
 		    System.out.println("Before Completion " + apiCallback.isComplete() + " : "+ apiCallback.isFailure());
 
@@ -102,7 +102,7 @@ public class KubeJavaClientTest {
 
 		V1Container container = new V1Container();
 		container.name("my-name");
-		container.image("my-image");
+		container.image("prakashg84/test:hellotestdocker");
 		//container.env(Arrays.asList(addr, port));
 		//container.resources(oldPod.getSpec().getContainers().get(0).getResources());
 

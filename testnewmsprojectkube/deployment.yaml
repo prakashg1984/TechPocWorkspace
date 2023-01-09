@@ -33,3 +33,9 @@ spec:
             path: application.properties
           - key: user-interface.properties
             path: user-interface.properties
+          name: spring-app-config
+          items:
+          - key: application.properties
+            path: application.properties
+          - key: bootstrap.properties
+            path: bootstrap.properties

@@ -42,11 +42,13 @@ public class OrderServiceImpl implements OrderService {
 	//@Cacheable(value = "orders", key = "#orderNumber")
 	public OrderModel findOne(String orderNumber) {
 		OrderModel orderModel = null;
-		if(redisTemplate.opsForHash().hasKey(orderNumber, orderNumber.hashCode())) {
-			logger.debug("Found on Cache : "+orderNumber);
-			orderModel = (OrderModel)redisTemplate.opsForHash().get(orderNumber, orderNumber.hashCode());
+		
+		if (redisTemplate.opsForHash().hasKey(orderNumber, orderNumber.hashCode())) {
+			logger.debug("Found on Cache : " + orderNumber);
+			orderModel = (OrderModel) redisTemplate.opsForHash().get(orderNumber, orderNumber.hashCode());
 			return orderModel;
 		}
+		 
 		Map<String, Object> orderResponse = orderRepository.getOrderById(orderNumber);
 		orderModel = objectMapper.convertValue(orderResponse, OrderModel.class);
 		redisTemplate.opsForHash().put(orderNumber, orderNumber.hashCode(), orderModel);

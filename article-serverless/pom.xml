@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.serverless</groupId>
-  <artifactId>demo</artifactId>
+  <artifactId>article-serverless-lambda</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

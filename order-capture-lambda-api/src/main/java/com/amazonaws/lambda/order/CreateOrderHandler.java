@@ -2,7 +2,7 @@ package com.amazonaws.lambda.order;
 
 import java.util.Map;
 
-import com.amazonaws.lambda.util.DynamoDBUtil;
+import com.amazonaws.lambda.order.DynamoDBUtil;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 

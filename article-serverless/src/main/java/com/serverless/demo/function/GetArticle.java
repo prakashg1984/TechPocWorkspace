@@ -38,7 +38,7 @@ public class GetArticle implements RequestHandler<ServerlessInput, ServerlessOut
         AmazonDynamoDB dynamoDb = AmazonDynamoDBClientBuilder.standard().build();
         AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
         ServerlessOutput output = new ServerlessOutput();
-        
+        System.out.println("serverlessInput.getQueryStringParameters() "+serverlessInput.getQueryStringParameters());
         try {
             if (serverlessInput.getQueryStringParameters() == null || serverlessInput.getQueryStringParameters().get(ARTICLE_TABLE_ID_NAME) == null) {
                     throw new Exception("Parameter " + ARTICLE_TABLE_ID_NAME + " in query must be provided!");
