@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class BubbleSort {
 
@@ -21,6 +22,10 @@ public class BubbleSort {
 					input[j] = temp;
 				}
 			}
+			for(int k=0; k < input.length; k++){  
+	            System.out.print(input[k] + " ");  
+	        } 
+			System.out.println("\n");
 		}
 	}
 

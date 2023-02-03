@@ -33,12 +33,12 @@ public class PersonService {
 
 	@Transactional
 	public Person getById(Long id) {
-		return personRepository.findOne(id);
+		return personRepository.findById(id).get() ;
 	}
 
 	@Transactional
 	public void deletePerson(Long personId) {
-		personRepository.delete(personId);
+		personRepository.delete(personRepository.findById(personId).get());
 	}
 
 	@Transactional

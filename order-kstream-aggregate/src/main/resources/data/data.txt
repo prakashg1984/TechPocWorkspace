@@ -1,0 +1,23 @@
+{"id" : "123","name" : "PG","department" : "ECS","salary" : 10}
+
+{"id" : "123","name" : "PG","department" : "RTL","salary" : 5}
+
+{"orderid" : "123","product" : "WIRELESS","losgType" : "NEW","fulfillmentMethod" : "DF"}
+{"orderid" : "123","product" : "WIRELESS","losgType" : "AL","fulfillmentMethod" : "DF"}
+{"orderid" : "123","product" : "INTERNET","losgType" : "NEW","fulfillmentMethod" : "DF"}
+{"orderid" : "123","product" : "INTERNET","losgType" : "UP","fulfillmentMethod" : "DF"}
+{"orderid" : "123","product" : "DIRECTV","losgType" : "NEW","fulfillmentMethod" : "DF"}
+
+
+{
+	"orderid": "123",
+	"losgs": [{
+		"product": "DIRECTV",
+		"losgType": "NEW",
+		"fulfillmentMethod": "DF"
+	}, {
+		"product": "WIRELESS",
+		"losgType": "UP",
+		"fulfillmentMethod": "DF"
+	}]
+}

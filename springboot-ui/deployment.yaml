@@ -1,8 +1,11 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: springboot-ui
 spec:
+  selector:
+    matchLabels:
+      app: springboot-ui
   template:
     metadata:
       labels:

@@ -9,7 +9,7 @@ public class MedianOfNr {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Integer input[]= {3, 5, 12};
+		Integer input[]= {3, 5, 12,9};
 		List<Integer> inputArray = new ArrayList<Integer>(Arrays.asList(input));
 
 		Collections.sort(inputArray);

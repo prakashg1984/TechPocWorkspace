@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: microservice-archetype
+  description: microservice-archetype main website
+  annotations:
+    jenkins.io/github-folder: 'microservice-archetype'
+    backstage.io/techdocs-ref: ./README.md
+  tags:
+    - java
+    - springboot
+  links:
+    - url: https://github.com/prakashg1984/TechPocWorkspace/edit/master/microservice-archetype
+      title: Github URL
+      icon: web
+spec:
+  type: Maven Archtype
+  lifecycle: production
+  owner: OCE-ATT
+  system: microservice-archetype-portal

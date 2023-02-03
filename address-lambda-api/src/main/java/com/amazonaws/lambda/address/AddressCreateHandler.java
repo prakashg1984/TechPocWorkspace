@@ -37,6 +37,7 @@ public class AddressCreateHandler implements RequestHandler<AddressBO, String> {
     	 
     	 AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
     			 .withRegion(Regions.US_EAST_2)
+    			 .
     			 .build();
     	 
     	 DynamoDB dynamoDB = new DynamoDB(client);

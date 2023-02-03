@@ -1,7 +1,10 @@
-com\amitph\spring\dogs\repo\Dog.class
-com\amitph\spring\dogs\Application.class
-com\amitph\spring\dogs\repo\DogsRepository.class
-com\amitph\spring\dogs\web\DogsController.class
-com\amitph\spring\dogs\model\DogDto.class
-com\amitph\spring\dogs\service\DogsService.class
-com\amitph\spring\dogs\service\DogNotFoundException.class
+com\pg\springjpa\repo\PersonRepository.class
+com\pg\springjpa\model\Person.class
+com\pg\springjpa\service\NameNotFoundException.class
+com\pg\springjpa\web\NameController.class
+com\pg\springjpa\SpringbootDataJpa2Application.class
+com\pg\springjpa\service\NameService.class
+com\pg\springjpa\web\PersonController.class
+com\pg\springjpa\repo\NameRepository.class
+com\pg\springjpa\service\PersonService.class
+com\pg\springjpa\model\Name.class

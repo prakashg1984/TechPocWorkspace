@@ -3,13 +3,16 @@ public class LinkedListMain {
 
 	public static void main(String[] args) {
 		MyLinkedList myLinkedList = new MyLinkedList(); 
-		Node start = new Node(1);
+		/*Node start = new Node(1);
 		start.next = new Node(2);
 		start.next.next = new Node(3);
 		start.next.next.next = new Node(4);
 		start.next.next.next.next = new Node(5);
 		start.next.next.next.next.next = new Node(6);
-		myLinkedList.head = start;
+		myLinkedList.head = start;*/
+		int[] data = {1,2,3,4,5,6};
+		myLinkedList.head = createLinkedList(data);
+		
 		
 		printLinkedList(myLinkedList);
 		System.out.println("--");
@@ -20,6 +23,18 @@ public class LinkedListMain {
 		System.out.println("--");
 		printLinkedList(myLinkedList);
 	}
+	
+	private static Node createLinkedList(int[] data) {
+		Node head = new Node(data[0]);
+		Node temp = head;
+		for(int i=1;i<data.length;i++) {
+			Node nextNode = new Node(data[i]);
+			head.next = nextNode;
+			head = head.next;
+		}
+		return temp;
+	}
+	
 	
 	private static void printLinkedList(MyLinkedList myLinkedList){
 		Node temp = myLinkedList.head;

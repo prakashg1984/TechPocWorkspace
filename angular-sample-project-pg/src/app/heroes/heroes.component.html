@@ -1,0 +1,27 @@
+<!--<div>
+  <label for="name">Hero ID: </label>
+  <input id="id" [(ngModel)]="hero.id" placeholder="id">
+</div>
+<div>
+  <label for="name">Hero name: </label>
+  <input id="name" [(ngModel)]="hero.name" placeholder="name">
+</div>-->
+<!-- LOOP THROUGH THE heroesList AND SHOW LIST -->
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <!--<li *ngFor="let heroObj of heroesList" [class.selected]="heroObj === selectedHero" (click)="onSelect(heroObj)">
+    <span class="badge">{{heroObj.id}}</span> {{heroObj.name}}
+  </li>-->
+
+  <li *ngFor="let heroObj of heroesList">
+    <a routerLink="/detail/{{heroObj.id}}">
+      <span class="badge">{{heroObj.id}}</span> {{heroObj.name}}
+    </a>
+  </li>
+
+</ul>
+
+<!-- MAP TO HERO-DETAIL COMPONENT by passing arguments-->
+<!--<app-hero-detail [heroDetail]="selectedHero"></app-hero-detail>
+--><!--<app-messages></app-messages>-->
+

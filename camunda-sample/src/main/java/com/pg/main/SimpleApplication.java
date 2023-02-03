@@ -21,7 +21,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 @SpringBootApplication
 @EnableScheduling
-@ComponentScan(basePackages="com.att.oce")
+@ComponentScan(basePackages="com.pg")
 @EnableKafka
 @EnableProcessApplication("mySimpleApplication")
 public class SimpleApplication  {

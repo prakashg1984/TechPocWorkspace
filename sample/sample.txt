@@ -1,0 +1,237 @@
+<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-data-solr</artifactId>
+		   <version>2.2.0.RELEASE</version>
+		 </dependency>
+     
+     <dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20210307</version>
+		</dependency>
+				
+		<dependency>
+	        <groupId>org.apache.solr</groupId>
+	        <artifactId>solr-solrj</artifactId>
+	        <version>8.8.0</version>
+	        <exclusions>
+	          <exclusion>
+	            <artifactId>jcl-over-slf4j</artifactId>
+	            <groupId>org.slf4j</groupId>
+	          </exclusion>
+	        </exclusions>
+       </dependency>
+       
+       <dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.15</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.12.2</version>
+		</dependency>
+    
+    
+    	@Bean
+	public SolrClient solrClient() throws Exception{
+		
+		System.setProperty("javax.net.ssl.keyStore", "src\\main\\resources\\solr-ssl.keystore.p12");
+		System.setProperty("javax.net.ssl.keyStorePassword", "secret");
+		System.setProperty("javax.net.ssl.trustStore", "src\\main\\resources\\solr-ssl.keystore.p12");
+		System.setProperty("javax.net.ssl.trustStorePassword", "secret");
+
+		CredentialsProvider provider = new BasicCredentialsProvider();
+	    UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(
+	    		solrUserName,solrUserPassword);
+	    provider.setCredentials(AuthScope.ANY, credentials);   
+	    SSLContext sslContext = SSLContexts.custom()
+		        .loadKeyMaterial(readStore(), solrKeyStorePassword.toCharArray()) 
+		        .build();
+	    HttpClient client = HttpClientBuilder.create().setDefaultCredentialsProvider(provider).
+	    		addInterceptorFirst(new PreemptiveAuthInterceptor()).setSSLContext(sslContext).build();     	    
+		
+        return new CloudSolrClient.Builder().withZkHost(zkHost).withHttpClient(client).build();
+
+	}
+	
+    @Bean
+    public SolrTemplate solrTemplate(SolrClient client) throws Exception {
+        return new SolrTemplate(client);
+    }
+    
+    @Component
+	@ConfigurationProperties("order.fields")
+	public static class OrderSearchProperties {
+
+		private final Map<String, String> props = new HashMap<>();
+
+		public Map<String, String> getProps() {
+			return props;
+		}
+
+	}
+    
+    static class PreemptiveAuthInterceptor implements HttpRequestInterceptor {
+
+        public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
+            AuthState authState = (AuthState) context.getAttribute(HttpClientContext.TARGET_AUTH_STATE);
+            // If no auth scheme available yet, try to initialize it
+            // preemptively
+            if (authState.getAuthScheme() == null) {
+                CredentialsProvider credsProvider = (CredentialsProvider) 
+                            context.getAttribute(HttpClientContext.CREDS_PROVIDER);
+                HttpHost targetHost = (HttpHost) context.getAttribute(HttpCoreContext.HTTP_TARGET_HOST);
+                AuthScope authScope = new AuthScope(targetHost.getHostName(), targetHost.getPort());
+                Credentials creds = credsProvider.getCredentials(authScope);
+
+                authState.update(new BasicScheme(), creds);
+            }
+        }
+    }
+    
+    KeyStore readStore() {
+        try (InputStream keyStoreStream = new FileInputStream(solrKeyStorePath)) {
+        	//String theString = IOUtils.toString(keyStoreStream, StandardCharsets.UTF_8); 
+        	//System.out.println("theString "+theString);
+            KeyStore keyStore = KeyStore.getInstance("PKCS12");
+            keyStore.load(keyStoreStream, solrKeyStorePassword.toCharArray());
+            return keyStore;
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+        return null;
+    }
+    
+    
+    --------------
+    
+    @Autowired
+	SolrTemplate solrTemplate;
+	
+	@Autowired
+	SolrClient solrClient;
+  
+  public Map searchOrder(Map<String,Object> searchStringMap) {
+			
+		SolrQuery solrQuery = utilHelper.createOrderSearchString(searchStringMap);
+		JSONArray jArray =new JSONArray();
+		QueryResponse queryResponse = null;
+		Map searchResponseMap = null;
+	    try {
+	    	log.debug("solrQuery NEW : {}",solrQuery.toString());
+	    	queryResponse = solrClient.query(orderRepoCollection, solrQuery);
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    	log.error("Failed to search articles: %s", e.getMessage());
+	    }
+	    
+	    queryResponse.getResults().forEach(document -> {
+	        JSONObject json = new JSONObject(document);
+	        jArray.put(json);           
+	    });
+	    
+	    if(jArray.length() > 0) {
+	    	try {
+	    		JSONObject searchJson = new JSONObject();
+	    		searchJson.put("OrderResponse", jArray);
+				searchResponseMap = objectMapper.readValue(searchJson.toString(), Map.class);
+			} catch (Exception e) {
+				log.error("Error in Json Conversion {} ",e.getMessage());
+				e.printStackTrace();
+			}
+	    }
+	    
+	    return searchResponseMap;
+	}
+	
+	
+	@Transactional
+	public String saveOrder(Map<String,Object> inputObject) {
+				 
+		 try {		
+		    SolrInputDocument doc1 = new SolrInputDocument();
+		    doc1 = utilHelper.createSolrDoc(inputObject, doc1);
+		    UpdateResponse response = solrTemplate.saveDocument(orderRepoCollection, doc1);
+		    solrTemplate.commit(orderRepoCollection);
+		    solrClient.add(orderRepoCollection, doc1);
+		    
+		    return (null != response) ? response.jsonStr() : StringUtils.EMPTY;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 return null;
+	}
+  
+  -----------------------
+  
+  public SolrQuery createOrderSearchString(Map<String,Object> searchStringMap) {
+		Map<String, String> orderSearchPropertiesMap;
+
+		orderSearchPropertiesMap = orderSearchProperties.getProps();
+		SolrQuery solrQuery = new SolrQuery();
+		Map<String,String> solrSearchMap;
+		if (null != searchStringMap) {
+			solrSearchMap = new HashMap<>();
+			orderSearchPropertiesMap.forEach((searchMasterKey,searchMasterValue) -> {
+				List<Object> searchMasterListValues = Arrays.asList(searchMasterValue.toString().split(","));
+				
+				searchMasterListValues.forEach(searchProp -> {
+					if(searchStringMap.containsKey(searchProp)) {
+						if(solrSearchMap.containsKey(searchMasterKey)) {
+							String existingSearchParam = solrSearchMap.get(searchMasterKey);
+							String searchParam = existingSearchParam + " AND " + searchProp + ":" + searchStringMap.get(searchProp) ;
+							solrSearchMap.put(searchMasterKey, searchParam);
+						}else {
+							String searchParam = StringUtils.EMPTY ;
+							
+							if(searchMasterKey.equalsIgnoreCase(TOPLEVEL_PROP)) {
+								searchParam = searchProp + ":" + searchStringMap.get(searchProp) ;
+							}else {
+								 searchParam = "{!parent which=\"*:* -_nest_path_:*\"}" + searchProp + ":" + searchStringMap.get(searchProp) ;
+							}
+							solrSearchMap.put(searchMasterKey, searchParam);
+						}
+						
+					}
+				});
+			});
+			
+			solrSearchMap.forEach((k, v) -> {
+				solrQuery.add("fq", v);
+			});
+			solrQuery.set("fl", "*,[child limit=100]");
+			solrQuery.set("q", "*:*");
+			solrQuery.setRows(10);
+		}
+		 solrQuery.set("sort", "acceptedDate desc");
+		 
+		 return solrQuery;
+	}
+  
+  --------------------------
+  
+  public SolrInputDocument createSolrDoc(Map<String,Object> inputObject, SolrInputDocument doc1) {
+		 inputObject.forEach((k,v) -> {
+		    	if(v instanceof ArrayList) {
+		    		Collection<SolrInputDocument> docs = new ArrayList<SolrInputDocument>();
+		    		ArrayList inputList = (ArrayList)v;
+		    		inputList.forEach(data -> {
+		    			SolrInputDocument childMap = new SolrInputDocument();
+			    		childMap = createSolrDoc((Map)data, childMap);
+			    		docs.add(childMap);
+		    		});
+		    		doc1.addField(k,docs);
+		    	}else if(v instanceof Map) {
+		    		SolrInputDocument childMap = new SolrInputDocument();
+		    		childMap = createSolrDoc((Map)v, childMap);
+		    		doc1.addField(k,childMap);
+		    	}else{
+		    		doc1.addField(k,v);
+		    	}
+		    });
+		
+		return doc1;
+	}

@@ -15,25 +15,26 @@ public class PrintAnagrams {
 
 		HashMap<String, List<String>> anagramMap = new HashMap<String, List<String>>();
 		
-		for(int i=0;i<inputList.size();i++){
-			String sortedKey = sortString(inputList.get(i));
+		inputList.forEach(k -> {
+			String sortedKey = sortString(k);
 			if(anagramMap.containsKey(sortedKey)){
 				List<String> values = (List<String>)anagramMap.get(sortedKey);
-				values.add(inputList.get(i));
+				values.add(k);
 			}else{
 				List<String> values = new ArrayList<String>();
-				values.add(inputList.get(i));
+				values.add(k);
 				anagramMap.put(sortedKey, values);
 			}
-		}
+		});
 		
-        for (String key : anagramMap.keySet()) { 
-        	List<String> values = (List<String>)anagramMap.get(key);
-        	if(values.size() > 1){
-        		System.out.println(values);
-        	}
-        }
-
+		anagramMap.forEach((k,v) -> {
+			if(v.size() > 1) {
+        		System.out.println("Anagrams : "+v);
+			}else {
+        		System.out.println("Not Anagrams : "+v);
+			}
+		});
+		
 	}
 	
 	private static String sortString(String data){

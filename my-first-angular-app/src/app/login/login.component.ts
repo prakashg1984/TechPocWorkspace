@@ -16,12 +16,12 @@ export class LoginComponent {
     users: any[];
     valid = false;
     isLoggedIn = 'false';
-  loginForm: any;
+    loginForm: any;
 
     constructor(private router: Router, private loginService: LoginService) {
         document.getElementById('login').style.display = 'none';
-        this.loginService.getUsers()
-            .subscribe(users => this.users = users);
+        /*this.loginService.getUsers()
+            .subscribe(users => this.users = users);*/
     }
 
     onSubmit() {
@@ -29,15 +29,38 @@ export class LoginComponent {
         const name = this.login.userName;
         sessionStorage.setItem('username', this.login.userName);
         const password = this.login.password;
-        const user = this.users.filter(currUser => currUser.userName === name && currUser.password === password)[0];
+
+      console.log("Invoking validateUser");
+      this.loginService.validateUser(name, password).subscribe((data) => {
+        console.log(data);
+
+        if (data) {
+          this.isLoggedIn = 'true';
+          sessionStorage.setItem('isLoggedIn', this.isLoggedIn);
+          sessionStorage.setItem('loggedInUser', name);
+          this.router.navigate(['/hello']);
+        } else {
+          this.isLoggedIn = 'false';
+          sessionStorage.setItem('isLoggedIn', this.isLoggedIn);
+          this.valid = false;
+        }
+      }
+      );
+
+       /* const user = this.users.filter(currUser => currUser.userName === name && currUser.password === password)[0];
         if (user) {
             this.isLoggedIn = 'true';
-            sessionStorage.setItem('isLoggedIn', this.isLoggedIn);
-            //this.router.navigate(['/products']);
+          sessionStorage.setItem('isLoggedIn', this.isLoggedIn);
+          sessionStorage.setItem('loggedInUser', name);
+            this.router.navigate(['/hello']);
         } else {
             this.isLoggedIn = 'false';
             sessionStorage.setItem('isLoggedIn', this.isLoggedIn);
             this.valid = false;
-        }
-    }
+        }*/
+  }
+
+  onRegister() {
+    this.router.navigate(['/register']);
+  }
 }

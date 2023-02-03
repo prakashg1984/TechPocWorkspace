@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-import com.netflix.hystrix.contrib.javanica.aop.aspectj.HystrixCommandAspect;
-
 @Configuration
 public class RestConfig {
 
@@ -20,9 +18,4 @@ public class RestConfig {
 	RestTemplate nonLBRestTemplate() {
 		return new RestTemplate();
 	}
-
-/*	@Bean
-	  public HystrixCommandAspect hystrixAspect() {
-	    return new HystrixCommandAspect();
-	  }*/
 }

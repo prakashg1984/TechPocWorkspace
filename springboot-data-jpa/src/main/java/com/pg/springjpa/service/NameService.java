@@ -1,6 +1,7 @@
 package com.pg.springjpa.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,8 @@ public class NameService {
     }
 
     public void delete(long id) {
-        repository.delete(id);
+    	Optional<Name> optionalName = repository.findById(id);
+        repository.delete(optionalName.get());
     }
 
     public List<Name> getNames() {
@@ -32,8 +34,8 @@ public class NameService {
 
     public Name getNameById(long id) {
     	logger.info("Input for getNameById {} ",id);
-    	Name optionalName = repository.findOne(id);
-        return optionalName;
+    	Optional<Name> optionalName = repository.findById(id);
+        return optionalName.get();
     }
 
     public List<Name> getNameByName(String name) {

@@ -23,6 +23,7 @@ public class RedisCacheConfiguration {
         JedisConnectionFactory factory = new JedisConnectionFactory();
         factory.setHostName(redisHost);
         factory.setPort(redisPort);
+        factory.setPassword("C1fazHBMrJLeCsJKz8KFCwJWXc7gko2N");
         factory.setUsePool(true);
         return factory;
     }

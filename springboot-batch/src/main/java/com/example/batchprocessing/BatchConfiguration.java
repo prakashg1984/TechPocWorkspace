@@ -1,19 +1,28 @@
 package com.example.batchprocessing;
 
+import java.util.Date;
+
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.launch.support.SimpleJobLauncher;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
+import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +37,7 @@ import com.example.processor.MyWriter;
 import com.example.processor.PersonItemProcessor;
 
 @Configuration
-//@EnableBatchProcessing
+@EnableBatchProcessing
 public class BatchConfiguration {
 
 	@Autowired
@@ -38,9 +47,6 @@ public class BatchConfiguration {
 	public StepBuilderFactory stepBuilderFactory;
 	
 	@Autowired
-	public 
-	
-	@Autowired
 	public MyReader myReader;
 
 	@Autowired
@@ -48,7 +54,7 @@ public class BatchConfiguration {
 	
 	@Autowired
 	public MyProcessor myProcessor;
-	
+		
 	@Bean
 	public MyReader myReader() {
 		return new MyReader();
@@ -73,19 +79,6 @@ public class BatchConfiguration {
 	public DummyItemProcessor dummyProcessor() {
 		return new DummyItemProcessor();
 	}
-	
-	@Scheduled(fixedDelay = 5000)
-    public void run(){
-       LOG.info("Processing Scheduled run...");
-       try
-       {
-          Job job = importUserJob();
-          JobParameters jobParameters = new JobParameters();
-          jobLauncher.run(job, jobParameters);
-       }catch(Exception e){
-          
-       }
-    }
 
 	@Bean
 	public FlatFileItemReader<Person> reader() {

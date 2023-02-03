@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
     styleUrls: ['app.component.css']
 })
 export class AppComponent implements DoCheck {
-    pageTitle = 'mCart';
+    pageTitle = 'Survey';
     loginTitle = 'Login';
     userName: string;
     constructor(private _router: Router) { }

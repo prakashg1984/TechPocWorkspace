@@ -15,16 +15,9 @@ node {
     dir('testnewmsprojectkube'){
         stage('build'){
 	        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
-	        sh 'docker login --username prakashg84 --password kashprag0712'
+	        sh 'docker login --username prakashg84 --password <pwd>'
 	        sh ("docker build -t testnewmsprojectkube .")
 	        sh ("docker tag  testnewmsprojectkube prakashg84/test:testnewmsprojectkube")
-	        sh ("docker push prakashg84/test:testnewmsprojectkube")
-    	}
-    	
-    	stage('create docker image'){
-		        sh 'docker login --username prakashg84 --password kashprag0712'
-		        sh ("docker build -t address-rest-api .")
-		        sh ("docker tag  address-rest-api prakashg84/test:address-rest-api")
     	}
     	
     	stage('push docker image'){

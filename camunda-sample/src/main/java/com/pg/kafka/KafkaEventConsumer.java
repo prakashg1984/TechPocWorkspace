@@ -6,6 +6,8 @@ import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.runtime.ProcessInstanceWithVariables;
 import org.camunda.bpm.engine.task.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -21,6 +23,8 @@ import com.pg.bo.OrderEventRequest;
 @EnableKafka
 public class KafkaEventConsumer {
 	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private RuntimeService runtimeService;
 	
@@ -29,6 +33,7 @@ public class KafkaEventConsumer {
 	
 	@KafkaListener(topics = "${test.event.topic}", containerFactory = "kafkaListenerContainerFactory")
 	public void receiveOrderEvent(OrderEventRequest eventRequest) {
+		logger.info("Inside Event Consumer : {} ",eventRequest);
 		String customerOrderNr = ((Map<String,Object>) eventRequest.any().get("event")).get("customerOrderNumber").toString();
 		
 		ProcessInstanceWithVariables pVariablesInReturn = runtimeService.createProcessInstanceByKey("OrderProcessEvent")

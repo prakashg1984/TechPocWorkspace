@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Hello World!</title>
+</head>
+<body>
+	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!
+		- Without Authentication</h1>
+	<form action="#" th:action="@{/hello}" th:object="${greeting}"
+		method="post">
+		<table>
+		<tr>
+		<td>
+		<p>
+			Id: <input type="text" th:field="*{id}" /> <th:if="${#fields.hasErrors('id')}" th:errors="*{id}">
+		</p>
+		</td>
+		</tr>
+		<tr>
+		<td>
+		<p>
+			Message: <input type="text" th:field="*{content}" /> <th:if="${#fields.hasErrors('content')}" th:errors="*{content}">
+		</p>
+		</td>
+		</tr>
+		<tr>
+		<td>
+			<input type="submit" value="Submit" /> <input type="reset"
+				value="Reset" />
+		</td>
+		</tr>
+		</table>
+	</form>
+</body>
+</html>
