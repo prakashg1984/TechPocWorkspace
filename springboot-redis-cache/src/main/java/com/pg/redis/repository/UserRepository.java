@@ -1,5 +1,6 @@
-package com.pg.redis;
+package com.pg.redis.repository;
 
+import com.pg.redis.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,7 @@
 package com.pg.redis;
 
+import com.pg.redis.model.User;
+import com.pg.redis.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

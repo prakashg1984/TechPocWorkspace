@@ -1,4 +1,4 @@
-package com.pg.redis;
+package com.pg.redis.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
