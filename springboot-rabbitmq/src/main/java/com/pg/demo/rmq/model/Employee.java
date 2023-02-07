@@ -1,8 +1,15 @@
 package com.pg.demo.rmq.model;
 
-public class Employee {
+import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Employee implements Serializable {
+
+	@JsonProperty("empName")
 	private String empName;
+	
+	@JsonProperty("empId")
 	private String empId;
 
 	public String getEmpName() {
