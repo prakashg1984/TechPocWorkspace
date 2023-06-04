@@ -16,14 +16,14 @@ import com.pg.bo.OrderEventRequest
 @Component("orderRoute")
 class OrderRoute {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	//private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Resource(name = "RouteEventProducerTemplate")
 	private KafkaTemplate<String, OrderEventRequest> sender;
 		
 	public void processEvent(Exchange exchange) {
 		Map<String, Object> exchangeVariables = (Map<String, Object>) exchange.getIn().getBody();
-		logger.info("exchangeVariables.get() {} " , exchangeVariables.get("eventRequest").toString());
+		//logger.info("exchangeVariables.get() {} " , exchangeVariables.get("eventRequest").toString());
 		
 		def eventRequest = exchangeVariables.get("eventRequest");
 		def customerOrderNr =  eventRequest.data.event.customerOrderNumber;

@@ -39,7 +39,7 @@ public class DBRepositoryImpl<T> implements DBRepository<T>  {
 			
 			query.addCriteria(Criteria.where(key).is(value));
 		}
-		
+		System.out.println("Final Query "+query);
 		List response = mongoTemplate.find(query, obj);
 		return response;
 	}

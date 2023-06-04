@@ -29,7 +29,7 @@ public class OrderService  {
 	/*
 	 * Annotate with Transactional if we need to enable atomicity
 	 */
-	@Transactional
+	//@Transactional
 	public void saveOrder(Map<String,Object> inputObject) {	
 		Accounts accounts = new Accounts();
 		Promotions promotions = new Promotions();
